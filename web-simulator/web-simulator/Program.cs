@@ -38,7 +38,7 @@ namespace web_simulator
             //Console.WriteLine("Faculty");
             //foreach (var me in ShowMethods(typeof(Faculty)))
             //{
-            //    Console.WriteLine(me);
+            ////    Console.WriteLine(me);
             //}
         }
     }
