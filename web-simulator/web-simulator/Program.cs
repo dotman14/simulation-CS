@@ -16,13 +16,13 @@ namespace web_simulator
             UserContainer uc = new UserContainer();
             //uc.GenerateUsers();
 
-            Randomize.RunClassMethods(student, random.Next(0, 15));
-            Randomize.RunClassMethods(faculty, random.Next(0, 10));
-            Randomize.RunClassMethods(admin, random.Next(0, 6));
+            //Randomize.RunClassMethods(student, random.Next(0, 15));
+            //Randomize.RunClassMethods(faculty, random.Next(0, 10));
+            //Randomize.RunClassMethods(admin, random.Next(0, 6));
 
-            //Scheduler sch = new Scheduler();
-            //foreach(var v in Scheduler.OpenWindows)
-            //    Console.WriteLine(v);
+            Scheduler sch = new Scheduler(-30);
+            foreach(var v in Scheduler.OpenWindows)
+                Console.WriteLine(v);
 
 
         }

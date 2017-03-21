@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace web_simulator
@@ -12,7 +11,7 @@ namespace web_simulator
 
         public List<string> GetMethods(User user)
         {
-            List<string> meths = new List<string>();
+            var meths = new List<string>();
 
             var type = user.GetType();
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
@@ -23,7 +22,7 @@ namespace web_simulator
             }
             return meths;
 
-            //LINQ: return (from method in type.GetMethods(flags) where method.Name != "Login" && method.Name != "Logout" select method.Name).ToList();
+            //LINQ: return (from method in type.GetMethods(flags) where method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString" select method.Name).ToList();
         }
     }
 }
