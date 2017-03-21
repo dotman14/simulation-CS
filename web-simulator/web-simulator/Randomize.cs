@@ -42,12 +42,13 @@ namespace web_simulator
         private static void RunMethod(User obj, int noOfTimesToRunMethod)
         {
             var rand = new Random();
+            const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
+            var adminType = obj.GetType();
+
             obj.Login();
             for (var i = 0; i < noOfTimesToRunMethod; i++)
             {
                 var methodIndex = rand.Next(0, obj.GetMethods(obj).Count);
-                var adminType = obj.GetType();
-                const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
                 var method = adminType.GetMethod(obj.GetMethods(obj)[methodIndex], flags);
                 Console.WriteLine(method.Invoke(obj, new object[] { }));
             }
