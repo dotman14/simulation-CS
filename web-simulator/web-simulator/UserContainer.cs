@@ -7,15 +7,15 @@ namespace web_simulator
 {
     class UserContainer
     {
-        public static readonly List<Student> StudentList = new List<Student>();
-        public static readonly List<Faculty> FacultyList = new List<Faculty>();
-        public static readonly List<Admin> AdminList = new List<Admin>();
+        private static readonly List<Student> StudentList = new List<Student>();
+        private static readonly List<Faculty> FacultyList = new List<Faculty>();
+        private static readonly List<Admin>   AdminList   = new List<Admin>();
 
         public void GenerateUsers()
         {
-            Thread studentThread = new Thread(GenerateStudent);
-            Thread facultyThread = new Thread(GenerateFaculty);
-            Thread adminThread   = new Thread(GenerateAdmin);
+            var studentThread = new Thread(GenerateStudent);
+            var facultyThread = new Thread(GenerateFaculty);
+            var adminThread   = new Thread(GenerateAdmin);
 
             studentThread.Start();
             facultyThread.Start();
@@ -24,27 +24,51 @@ namespace web_simulator
 
         private static void GenerateStudent()
         {
+            var timeIncreament = 0;
             while (true)
             {
-                StudentList.Add(new Student());
+                timeIncreament += 3;
+                var student = new Student
+                {
+                    InterArrivalTime = timeIncreament,
+                    Name = "student " + timeIncreament
+                };
+                StudentList.Add(student);
+                Console.WriteLine(student);
                 Thread.Sleep(3000);
             }
         }
 
         private static void GenerateFaculty()
         {
+            var timeIncreament = 0;
             while (true)
             {
-                FacultyList.Add(new Faculty());
+                timeIncreament += 6;
+                var faculty = new Faculty
+                {
+                    InterArrivalTime = timeIncreament,
+                    Name = "faculty " + timeIncreament
+                };
+                FacultyList.Add(faculty);
+                Console.WriteLine(faculty);
                 Thread.Sleep(6000);
             }
         }
 
         private static void GenerateAdmin()
         {
+            var timeIncreament = 0;
             while (true)
             {
-                AdminList.Add(new Admin());
+                timeIncreament += 10;
+                var admin = new Admin
+                {
+                    InterArrivalTime = timeIncreament,
+                    Name = "admin " + timeIncreament
+                };
+                AdminList.Add(admin);
+                Console.WriteLine(admin);
                 Thread.Sleep(10000);
             }
         }

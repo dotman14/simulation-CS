@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using web_simulator.Users;
 
 namespace web_simulator
@@ -9,16 +7,24 @@ namespace web_simulator
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
+
             var student = new Student();
             var admin = new Admin();
             var faculty = new Faculty();
 
             UserContainer uc = new UserContainer();
-           //uc.GenerateUsers();
+            uc.GenerateUsers();
 
-            Randomize.RunClassMethods(student, 4);
-            Randomize.RunClassMethods(admin, 4);
-            Randomize.RunClassMethods(faculty, 4);
+            //Randomize.RunClassMethods(student, random.Next(0, 6));
+            //Randomize.RunClassMethods(admin, random.Next(0, 3));
+            //Randomize.RunClassMethods(faculty, random.Next(0, 3));
+
+            //Scheduler sch = new Scheduler();
+            //foreach(var v in Scheduler.OpenWindows)
+            //    Console.WriteLine(v);
+
+
         }
     }
 }

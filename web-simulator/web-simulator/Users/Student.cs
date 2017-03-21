@@ -4,6 +4,8 @@ namespace web_simulator.Users
 {
     public class Student : User
     {
+        public int InterArrivalTime;
+        public string Name;
         public override void Login()
         {
             Console.WriteLine("Student Login");
@@ -22,6 +24,13 @@ namespace web_simulator.Users
         public void ViewSurvery()
         {
             Console.WriteLine("Student ViewSurvery");
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return $"Name: {Name}; Time: {InterArrivalTime}";
         }
     }
 }

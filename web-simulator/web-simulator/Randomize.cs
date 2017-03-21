@@ -6,7 +6,12 @@ namespace web_simulator
 {
     static class Randomize
     {
-        public static void RunClassMethods(object typeOfUser, int runMethods)
+        /// <summary>
+        /// This static method is used to dynamically run methods of a class
+        /// </summary>
+        /// <param name="typeOfUser"></param>
+        /// <param name="noOfTimesToRunMethod"></param>
+        public static void RunClassMethods(object typeOfUser, int noOfTimesToRunMethod)
         {
             var rand = new Random();
 
@@ -14,7 +19,7 @@ namespace web_simulator
             {
                 var student = (Student)typeOfUser;
                 student.Login();
-                for (var i = 0; i < runMethods; i++)
+                for (var i = 0; i < noOfTimesToRunMethod; i++)
                 {
                     var methodIndex = rand.Next(0, student.GetMethods(student).Count);
                     var studentType = student.GetType();
@@ -28,11 +33,11 @@ namespace web_simulator
             {
                 var faculty = (Faculty)typeOfUser;
                 faculty.Login();
-                for (var i = 0; i < runMethods; i++)
+                for (var i = 0; i < noOfTimesToRunMethod; i++)
                 {
                     var methodIndex = rand.Next(0, faculty.GetMethods(faculty).Count);
-                    var studentType = faculty.GetType();
-                    var method = studentType.GetMethod(faculty.GetMethods(faculty)[methodIndex], BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+                    var facultyType = faculty.GetType();
+                    var method = facultyType.GetMethod(faculty.GetMethods(faculty)[methodIndex], BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
                     Console.WriteLine(method.Invoke(faculty, new object[] { }));
                 }
                 faculty.Logout();
@@ -42,11 +47,11 @@ namespace web_simulator
             {
                 var admin = (Admin)typeOfUser;
                 admin.Login();
-                for (var i = 0; i < runMethods; i++)
+                for (var i = 0; i < noOfTimesToRunMethod; i++)
                 {
                     var methodIndex = rand.Next(0, admin.GetMethods(admin).Count);
-                    var studentType = admin.GetType();
-                    var method = studentType.GetMethod(admin.GetMethods(admin)[methodIndex], BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+                    var adminType = admin.GetType();
+                    var method = adminType.GetMethod(admin.GetMethods(admin)[methodIndex], BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
                     Console.WriteLine(method.Invoke(admin, new object[] { }));
                 }
                 admin.Logout();

@@ -18,7 +18,7 @@ namespace web_simulator
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
             foreach (var method in type.GetMethods(flags))
             {
-                if(method.Name != "Login" && method.Name != "Logout")
+                if(method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString")
                 meths.Add(method.Name);
             }
             return meths;

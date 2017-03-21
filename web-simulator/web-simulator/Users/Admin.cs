@@ -4,6 +4,8 @@ namespace web_simulator.Users
 {
     class Admin : User
     {
+        public int InterArrivalTime;
+        public string Name;
         public override void Login()
         {
             Console.WriteLine("Admin Login");
@@ -17,6 +19,11 @@ namespace web_simulator.Users
         public void ViewReport()
         {
             Console.WriteLine("Admin View Report");
+        }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}; Time: {InterArrivalTime}";
         }
     }
 }
