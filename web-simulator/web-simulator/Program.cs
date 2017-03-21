@@ -14,11 +14,11 @@ namespace web_simulator
             var faculty = new Faculty();
 
             UserContainer uc = new UserContainer();
-            uc.GenerateUsers();
+            //uc.GenerateUsers();
 
-            //Randomize.RunClassMethods(student, random.Next(0, 6));
-            //Randomize.RunClassMethods(admin, random.Next(0, 3));
-            //Randomize.RunClassMethods(faculty, random.Next(0, 3));
+            Randomize.RunClassMethods(student, random.Next(0, 15));
+            Randomize.RunClassMethods(faculty, random.Next(0, 10));
+            Randomize.RunClassMethods(admin, random.Next(0, 6));
 
             //Scheduler sch = new Scheduler();
             //foreach(var v in Scheduler.OpenWindows)
