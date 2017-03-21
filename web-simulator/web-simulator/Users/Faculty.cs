@@ -11,7 +11,7 @@ namespace web_simulator.Users
 
         public override void Logout()
         {
-            Console.WriteLine("Faculty Login");
+            Console.WriteLine("Faculty Logout");
         }
 
         public void Survey()

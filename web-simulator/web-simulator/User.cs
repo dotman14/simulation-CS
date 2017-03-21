@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace web_simulator
@@ -10,15 +10,20 @@ namespace web_simulator
 
         public abstract void Logout();
 
-        public List<string> GetMethods(Type type)
+        public List<string> GetMethods(User user)
         {
             List<string> meths = new List<string>();
-            var flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
+
+            var type = user.GetType();
+            const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
             foreach (var method in type.GetMethods(flags))
             {
+                if(method.Name != "Login" && method.Name != "Logout")
                 meths.Add(method.Name);
             }
             return meths;
+
+            //LINQ: return (from method in type.GetMethods(flags) where method.Name != "Login" && method.Name != "Logout" select method.Name).ToList();
         }
     }
 }

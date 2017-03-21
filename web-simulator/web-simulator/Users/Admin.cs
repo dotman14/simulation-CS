@@ -11,7 +11,7 @@ namespace web_simulator.Users
 
         public override void Logout()
         {
-            Console.WriteLine("Admin Login");
+            Console.WriteLine("Admin Logout");
         }
 
         public void ViewReport()

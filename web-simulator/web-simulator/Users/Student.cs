@@ -16,17 +16,12 @@ namespace web_simulator.Users
 
         public void CompleteSurvery()
         {
-
+            Console.WriteLine("Student CompleteSurvery");
         }
 
         public void ViewSurvery()
         {
-
-        }
-
-        public void GetMetrics()
-        {
-            Console.WriteLine("Student GetMetrics");
+            Console.WriteLine("Student ViewSurvery");
         }
     }
 }
