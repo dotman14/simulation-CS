@@ -4,8 +4,8 @@ namespace web_simulator.Users
 {
     class Admin : User
     {
-        public int InterArrivalTime;
-        public string Name;
+        //public int InterArrivalTime;
+        //public string Name;
         public override void Login()
         {
             Console.WriteLine("Admin Login");

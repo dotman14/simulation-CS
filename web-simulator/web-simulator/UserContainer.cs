@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using web_simulator.Users;
 
 namespace web_simulator
@@ -48,7 +49,7 @@ namespace web_simulator
             var timeIncreament = 0;
             while (true)
             {
-                timeIncreament += 6;
+                timeIncreament += 7;
                 var faculty = new Faculty
                 {
                     InterArrivalTime = timeIncreament,
@@ -57,7 +58,7 @@ namespace web_simulator
                 FacultyList.Add(faculty);
                 AllUsers.Add(faculty);
                 Console.WriteLine(faculty);
-                Thread.Sleep(6000);
+                Thread.Sleep(7000);
             }
         }
 
@@ -66,7 +67,7 @@ namespace web_simulator
             var timeIncreament = 0;
             while (true)
             {
-                timeIncreament += 10;
+                timeIncreament += 11;
                 var admin = new Admin
                 {
                     InterArrivalTime = timeIncreament,
@@ -75,7 +76,7 @@ namespace web_simulator
                 AdminList.Add(admin);
                 AllUsers.Add(admin);
                 Console.WriteLine(admin);
-                Thread.Sleep(10000);
+                Thread.Sleep(11000);
             }
         }
     }

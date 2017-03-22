@@ -4,8 +4,8 @@ namespace web_simulator.Users
 {
     public class Student : User
     {
-        public int InterArrivalTime;
-        public string Name;
+        //public int InterArrivalTime;
+        //public string Name;
         public override void Login()
         {
             Console.WriteLine("Student Login");

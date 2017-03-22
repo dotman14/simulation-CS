@@ -5,6 +5,8 @@ namespace web_simulator
 {
     public abstract class User
     {
+        public int InterArrivalTime;
+        public string Name;
         public abstract void Login();
 
         public abstract void Logout();

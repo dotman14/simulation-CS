@@ -44,11 +44,18 @@ namespace web_simulator
 
                 foreach(var i in UserContainer.AllUsers)
                     Console.Write("{0} ", i.GetType().Name);
-                Thread.Sleep(6000);
+                Thread.Sleep(9000);
             }
 
         }
+
+        public bool CheckArrivalTime(User user)
+        {
+
+
+            return true;
+        }
         public static int WaitTime { get; set; }
-        public static List<string> OpenWindows { get; private set; }
+        private static List<string> OpenWindows { get; set; }
     }
 }
