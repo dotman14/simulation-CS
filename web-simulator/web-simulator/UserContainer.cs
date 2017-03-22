@@ -7,19 +7,22 @@ namespace web_simulator
 {
     class UserContainer
     {
-        private static readonly List<Student> StudentList = new List<Student>();
-        private static readonly List<Faculty> FacultyList = new List<Faculty>();
-        private static readonly List<Admin>   AdminList   = new List<Admin>();
+        public static readonly List<Student> StudentList = new List<Student>();
+        public static readonly List<Faculty> FacultyList = new List<Faculty>();
+        public static readonly List<Admin>   AdminList   = new List<Admin>();
+        public static readonly List<User> AllUsers = new List<User>();
 
         public void GenerateUsers()
         {
             var studentThread = new Thread(GenerateStudent);
-            var facultyThread = new Thread(GenerateFaculty);
+            var facultyThread = new Thread( GenerateFaculty);
             var adminThread   = new Thread(GenerateAdmin);
 
             studentThread.Start();
             facultyThread.Start();
             adminThread.Start();
+
+            Scheduler.Dispatch();
         }
 
         private static void GenerateStudent()
@@ -34,6 +37,7 @@ namespace web_simulator
                     Name = "student " + timeIncreament
                 };
                 StudentList.Add(student);
+                AllUsers.Add(student);
                 Console.WriteLine(student);
                 Thread.Sleep(3000);
             }
@@ -51,6 +55,7 @@ namespace web_simulator
                     Name = "faculty " + timeIncreament
                 };
                 FacultyList.Add(faculty);
+                AllUsers.Add(faculty);
                 Console.WriteLine(faculty);
                 Thread.Sleep(6000);
             }
@@ -68,6 +73,7 @@ namespace web_simulator
                     Name = "admin " + timeIncreament
                 };
                 AdminList.Add(admin);
+                AllUsers.Add(admin);
                 Console.WriteLine(admin);
                 Thread.Sleep(10000);
             }
