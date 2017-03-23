@@ -26,26 +26,13 @@ namespace web_simulator
 
         private static void DispatchNextUser()
         {
-            while (true)
-            {
-                if (UserContainer.StudentList.Count == 0)
-                    Console.WriteLine("There are no Student to dispatch");
+            //if(OpenWindows.Count == 0)
+            //{
+            //    lock (OpenWindows)
+            //    {
 
-                if (UserContainer.FacultyList.Count == 0)
-                    Console.WriteLine("There are no Faculty to dispatch");
-
-                if (UserContainer.AdminList.Count == 0)
-                    Console.WriteLine("There are no Admin to dispatch");
-
-                Console.WriteLine("Student now has: "  + UserContainer.StudentList.Count);
-                Console.WriteLine("Faculty now has: "  + UserContainer.FacultyList.Count);
-                Console.WriteLine("Admin now has: "    + UserContainer.AdminList.Count);
-                Console.WriteLine("Total Users now : " + UserContainer.AllUsers.Count);
-
-                foreach(var i in UserContainer.AllUsers)
-                    Console.Write("{0} ", i.GetType().Name);
-                Thread.Sleep(9000);
-            }
+            //    }
+            //}
 
         }
 

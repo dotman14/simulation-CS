@@ -31,16 +31,17 @@ namespace web_simulator
             var timeIncreament = 0;
             while (true)
             {
-                timeIncreament += 3;
+                timeIncreament += 5;
+                Thread.Sleep(5000);
                 var student = new Student
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "student " + timeIncreament
                 };
                 StudentList.Add(student);
-                AllUsers.Add(student);
+                //AllUsers.Add(student);
                 Console.WriteLine(student);
-                Thread.Sleep(3000);
+
             }
         }
 
@@ -49,16 +50,16 @@ namespace web_simulator
             var timeIncreament = 0;
             while (true)
             {
-                timeIncreament += 7;
+                timeIncreament += 13;
+                Thread.Sleep(13000);
                 var faculty = new Faculty
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "faculty " + timeIncreament
                 };
                 FacultyList.Add(faculty);
-                AllUsers.Add(faculty);
+                //AllUsers.Add(faculty);
                 Console.WriteLine(faculty);
-                Thread.Sleep(7000);
             }
         }
 
@@ -67,16 +68,16 @@ namespace web_simulator
             var timeIncreament = 0;
             while (true)
             {
-                timeIncreament += 11;
+                timeIncreament += 17;
+                Thread.Sleep(17000);
                 var admin = new Admin
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "admin " + timeIncreament
                 };
                 AdminList.Add(admin);
-                AllUsers.Add(admin);
+                //AllUsers.Add(admin);
                 Console.WriteLine(admin);
-                Thread.Sleep(11000);
             }
         }
     }

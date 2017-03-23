@@ -11,6 +11,10 @@ namespace web_simulator
 
         public abstract void Logout();
 
+        public override string ToString()
+        {
+            return $"Name: {Name}; Time: {InterArrivalTime}";
+        }
         public List<string> GetMethods(User user)
         {
             var meths = new List<string>();
