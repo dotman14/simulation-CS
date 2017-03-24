@@ -11,7 +11,7 @@ namespace web_simulator
         /// </summary>
         /// <param name="typeOfUser"></param>
         /// <param name="noOfTimesToRunMethod"></param>
-        public static void RunClassMethods(object typeOfUser, int noOfTimesToRunMethod)
+        public static void RunClassMethods(User typeOfUser, int noOfTimesToRunMethod)
         {
             if (typeOfUser is Student)
             {

@@ -17,16 +17,16 @@ namespace web_simulator
         }
         public List<string> GetMethods(User user)
         {
-            var meths = new List<string>();
+            var methodList = new List<string>();
 
             var type = user.GetType();
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
             foreach (var method in type.GetMethods(flags))
             {
                 if(method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString")
-                meths.Add(method.Name);
+                methodList.Add(method.Name);
             }
-            return meths;
+            return methodList;
 
             //LINQ: return (from method in type.GetMethods(flags) where method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString" select method.Name).ToList();
         }

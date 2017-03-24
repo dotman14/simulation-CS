@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using web_simulator.Users;
 
 namespace web_simulator
 {
     class UserContainer
     {
-        public static readonly List<Student> StudentList = new List<Student>();
-        public static readonly List<Faculty> FacultyList = new List<Faculty>();
-        public static readonly List<Admin>   AdminList   = new List<Admin>();
-        public static readonly List<User> AllUsers = new List<User>();
+        public static readonly Queue<Student> StudentList = new Queue<Student>();
+        public static readonly Queue<Faculty> FacultyList = new Queue<Faculty>();
+        public static readonly Queue<Admin>     AdminList = new Queue<Admin>();
+        public static readonly Queue<User>       AllUsers = new Queue<User>();
 
         public void GenerateUsers()
         {
             var studentThread = new Thread(GenerateStudent);
-            var facultyThread = new Thread( GenerateFaculty);
+            var facultyThread = new Thread(GenerateFaculty);
             var adminThread   = new Thread(GenerateAdmin);
 
             studentThread.Start();
             facultyThread.Start();
             adminThread.Start();
 
-            Scheduler.Dispatch();
+            //Scheduler.Dispatch(AllUsers.Dequeue());
         }
 
         private static void GenerateStudent()
@@ -38,8 +37,12 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "student " + timeIncreament
                 };
-                StudentList.Add(student);
+                //StudentList.Enqueue(student);
                 //AllUsers.Add(student);
+                lock (AllUsers)
+                {
+                    AllUsers.Enqueue(student);
+                }
                 Console.WriteLine(student);
 
             }
@@ -57,8 +60,12 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "faculty " + timeIncreament
                 };
-                FacultyList.Add(faculty);
+                //FacultyList.Enqueue(faculty);
                 //AllUsers.Add(faculty);
+                lock (AllUsers)
+                {
+                    AllUsers.Enqueue(faculty);
+                }
                 Console.WriteLine(faculty);
             }
         }
@@ -75,8 +82,12 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "admin " + timeIncreament
                 };
-                AdminList.Add(admin);
+                //AdminList.Enqueue(admin);
                 //AllUsers.Add(admin);
+                lock (AllUsers)
+                {
+                    AllUsers.Enqueue(admin);
+                }
                 Console.WriteLine(admin);
             }
         }
