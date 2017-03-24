@@ -12,7 +12,6 @@ namespace web_simulator
         public static readonly Queue<Faculty> FacultyList = new Queue<Faculty>();
         public static readonly Queue<Admin>     AdminList = new Queue<Admin>();
 
-
         public void GenerateUsers()
         {
             var studentThread = new Thread(GenerateStudent);

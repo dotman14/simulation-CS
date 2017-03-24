@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Threading;
 
 namespace web_simulator.Users
 {
-    class Faculty : User
+	public class Faculty : User
     {
+		const int sleepSurvery = 9;
+		const int sleepViewSchedule = 10;
+		const int sleepRoaster = 7;
+		const int sleepSurveryResult = 11;
+
         public override void Login()
         {
             Console.WriteLine("Faculty Login");
@@ -14,24 +20,28 @@ namespace web_simulator.Users
             Console.WriteLine("Faculty Logout");
         }
 
-        public void Survey()
+        public int Survey()
         {
-            Console.WriteLine("Faculty Survey");
+			Thread.Sleep(sleepSurvery * 1000);
+			return sleepSurvery;
         }
 
-        public void ViewSchedule()
+        public int ViewSchedule()
         {
-            Console.WriteLine("Faculty ViewSchedule");
+			Thread.Sleep(sleepViewSchedule * 1000);
+			return sleepViewSchedule;
         }
 
-        public void Roaster()
+        public int Roaster()
         {
-            Console.WriteLine("Faculty Roaster");
+			Thread.Sleep(sleepRoaster * 1000);
+			return sleepRoaster;
         }
 
-        public void SurveyResults()
+        public int SurveyResults()
         {
-            Console.WriteLine("Faculty SurveyResults");
+			Thread.Sleep(sleepSurveryResult * 1000);
+			return sleepSurveryResult;
         }
     }
 }
