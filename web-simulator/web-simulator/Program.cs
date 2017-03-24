@@ -8,15 +8,8 @@ namespace web_simulator
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-
             UserContainer uc = new UserContainer();
             uc.GenerateUsers();
-
-            Scheduler sch = new Scheduler(10);
-
-            //foreach(var v in Scheduler.OpenWindows)
-            //    Console.WriteLine(v);
         }
     }
 }

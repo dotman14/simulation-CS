@@ -11,9 +11,9 @@ namespace web_simulator
         {
             noOfWindows = (noOfWindows <= 0) ? 10 : noOfWindows;
 
-            OpenWindows = new List<Windows>();
+            OpenWindows = new List<string>();
             for (var i = 0; i < noOfWindows; i++)
-                OpenWindows.Add(new Windows{ Name = "window-" + i});
+                OpenWindows.Add("window-" + i);
         }
 
         public void Dispatch(User user)
@@ -37,8 +37,6 @@ namespace web_simulator
                     var openWindowAtIndex = random.Next(0, OpenWindows.Count);
                     var takeWindow = OpenWindows[openWindowAtIndex];
 
-                    takeWindow.ServingUser = user.Name;
-
                     OpenWindows.RemoveAt(openWindowAtIndex);
 
                     Randomize.RunClassMethods(user, random.Next(0, 4));
@@ -51,6 +49,6 @@ namespace web_simulator
         }
 
         public static int WaitTime { get; set; }
-        private static List<Windows> OpenWindows { get; set; }
+        private static List<string> OpenWindows { get; set; }
     }
 }
