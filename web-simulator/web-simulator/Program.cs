@@ -13,7 +13,7 @@ namespace web_simulator
             var admin = new Admin();
             var faculty = new Faculty();
 
-
+             
             
             UserContainer uc = new UserContainer();
             uc.GenerateUsers();
