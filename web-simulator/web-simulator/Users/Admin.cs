@@ -3,9 +3,9 @@ using System.Threading;
 
 namespace web_simulator.Users
 {
-	public class Admin : User
+    public class Admin : User
     {
-		const int sleepViewReport = 10;
+        const int SLEEP_VIEW_REPORT = 10;
 
         public override void Login()
         {
@@ -19,8 +19,8 @@ namespace web_simulator.Users
 
         public int ViewReport()
         {
-			Thread.Sleep(sleepViewReport * 1000);
-			return sleepViewReport;
+            Thread.Sleep(SLEEP_VIEW_REPORT * 1000);
+            return SLEEP_VIEW_REPORT;
         }
     }
 }

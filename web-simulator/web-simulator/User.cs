@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace web_simulator
@@ -24,8 +23,8 @@ namespace web_simulator
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
             foreach (var method in type.GetMethods(flags))
             {
-                if(method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString")
-                methodList.Add(method.Name);
+                if (method.Name != "Login" && method.Name != "Logout" && method.Name != "ToString")
+                    methodList.Add(method.Name);
             }
             return methodList;
 

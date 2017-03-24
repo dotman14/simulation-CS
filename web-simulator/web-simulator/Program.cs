@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using web_simulator.Users;
-
-namespace web_simulator
+﻿namespace web_simulator
 {
     class Program
     {

@@ -5,8 +5,8 @@ namespace web_simulator.Users
 {
     public class Student : User
     {
-		const int sleepCompleteSurvery = 15;
-		const int sleepViewSurvery = 9;
+        const int SLEEP_COMPLETE_SURVERY = 15;
+        const int SLEEP_VIEW_SURVERY = 9;
 
         public override void Login()
         {
@@ -20,14 +20,14 @@ namespace web_simulator.Users
 
         public int CompleteSurvery()
         {
-			Thread.Sleep(sleepCompleteSurvery * 1000);
-			return sleepCompleteSurvery;
+            Thread.Sleep(SLEEP_COMPLETE_SURVERY * 1000);
+            return SLEEP_COMPLETE_SURVERY;
         }
 
         public int ViewSurvery()
         {
-			Thread.Sleep(sleepViewSurvery * 1000);
-			return sleepViewSurvery;
+            Thread.Sleep(SLEEP_VIEW_SURVERY * 1000);
+            return SLEEP_VIEW_SURVERY;
         }
     }
 }

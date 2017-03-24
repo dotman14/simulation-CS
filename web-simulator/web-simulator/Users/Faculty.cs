@@ -3,12 +3,12 @@ using System.Threading;
 
 namespace web_simulator.Users
 {
-	public class Faculty : User
+    public class Faculty : User
     {
-		const int sleepSurvery = 9;
-		const int sleepViewSchedule = 10;
-		const int sleepRoaster = 7;
-		const int sleepSurveryResult = 11;
+        const int SLEEP_SURVERY = 9;
+        const int SLEEP_VIEW_SCHEDULE = 10;
+        const int SLEEP_ROASTER = 7;
+        const int SLEEP_SURVERY_RESULT = 11;
 
         public override void Login()
         {
@@ -22,26 +22,26 @@ namespace web_simulator.Users
 
         public int Survey()
         {
-			Thread.Sleep(sleepSurvery * 1000);
-			return sleepSurvery;
+            Thread.Sleep(SLEEP_SURVERY * 1000);
+            return SLEEP_SURVERY;
         }
 
         public int ViewSchedule()
         {
-			Thread.Sleep(sleepViewSchedule * 1000);
-			return sleepViewSchedule;
+            Thread.Sleep(SLEEP_VIEW_SCHEDULE * 1000);
+            return SLEEP_VIEW_SCHEDULE;
         }
 
         public int Roaster()
         {
-			Thread.Sleep(sleepRoaster * 1000);
-			return sleepRoaster;
+            Thread.Sleep(SLEEP_ROASTER * 1000);
+            return SLEEP_ROASTER;
         }
 
         public int SurveyResults()
         {
-			Thread.Sleep(sleepSurveryResult * 1000);
-			return sleepSurveryResult;
+            Thread.Sleep(SLEEP_SURVERY_RESULT * 1000);
+            return SLEEP_SURVERY_RESULT;
         }
     }
 }

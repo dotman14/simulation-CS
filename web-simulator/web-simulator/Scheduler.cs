@@ -32,7 +32,7 @@ namespace web_simulator
             Random random = new Random();
             lock (OpenWindows)
             {
-                if(OpenWindows.Count > 0)
+                if (OpenWindows.Count > 0)
                 {
                     var openWindowAtIndex = random.Next(0, OpenWindows.Count);
                     var takeWindow = OpenWindows[openWindowAtIndex];
