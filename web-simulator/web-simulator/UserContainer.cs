@@ -7,9 +7,9 @@ namespace web_simulator
 {
     class UserContainer
     {
-        public static readonly Queue<Student> StudentList = new Queue<Student>();
-        public static readonly Queue<Faculty> FacultyList = new Queue<Faculty>();
-        public static readonly Queue<Admin> AdminList = new Queue<Admin>();
+		public static readonly Queue<Student> StudentQueue = new Queue<Student>();
+		public static readonly Queue<Faculty> FacultyQueue = new Queue<Faculty>();
+		public static readonly Queue<Admin> AdminQueue = new Queue<Admin>();
 
         public void GenerateUsers()
         {
@@ -40,7 +40,7 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "student " + timeIncreament
                 };
-                StudentList.Enqueue(student);
+                StudentQueue.Enqueue(student);
                 Console.WriteLine(student);
 
             }
@@ -64,7 +64,7 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "faculty " + timeIncreament
                 };
-                FacultyList.Enqueue(faculty);
+                FacultyQueue.Enqueue(faculty);
                 Console.WriteLine(faculty);
             }
         }
@@ -87,7 +87,7 @@ namespace web_simulator
                     InterArrivalTime = timeIncreament,
                     Name = "admin " + timeIncreament
                 };
-                AdminList.Enqueue(admin);
+                AdminQueue.Enqueue(admin);
                 Console.WriteLine(admin);
             }
         }

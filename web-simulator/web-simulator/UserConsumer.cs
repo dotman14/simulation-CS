@@ -9,37 +9,37 @@ namespace web_simulator
         static readonly Random Random = new Random();
         const int MIN_NO_OF_METHODS = 0;
 
-        public static void StudentConsumer(Queue<Student> student)
+		public static void StudentConsumer(Queue<Student> studentQueue)
         {
             Student localStudent;
-            lock (student)
+            lock (studentQueue)
             {
-                var stu = student.Dequeue();
+                var stu = studentQueue.Dequeue();
                 localStudent = stu;
             }
-            Randomize.RunClassMethods(localStudent, Random.Next(MIN_NO_OF_METHODS, 4));
+            Randomize.RunClassMethods(localStudent, Random.Next(0, 4));
         }
 
-        public static void FacultyConsumer(Queue<Faculty> faculty)
+		public static void FacultyConsumer(Queue<Faculty> facultyQueue)
         {
             Faculty localFaculty;
-            lock (faculty)
+            lock (facultyQueue)
             {
-                var fac = faculty.Dequeue();
+                var fac = facultyQueue.Dequeue();
                 localFaculty = fac;
             }
-            Randomize.RunClassMethods(localFaculty, Random.Next(MIN_NO_OF_METHODS, 4));
+            Randomize.RunClassMethods(localFaculty, Random.Next(0, 4));
         }
 
-        public static void AdminConsumer(Queue<Admin> admin)
+		public static void AdminConsumer(Queue<Admin> adminQueue)
         {
             Admin localAdmin;
-            lock (admin)
+            lock (adminQueue)
             {
-                var adm = admin.Dequeue();
+                var adm = adminQueue.Dequeue();
                 localAdmin = adm;
             }
-            Randomize.RunClassMethods(localAdmin, Random.Next(MIN_NO_OF_METHODS, 4));
+            Randomize.RunClassMethods(localAdmin, Random.Next(0, 4));
         }
     }
 }
