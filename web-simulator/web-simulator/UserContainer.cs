@@ -1,45 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using web_simulator.Users;
 
 namespace web_simulator
 {
     class UserContainer
     {
-        public static readonly List<Student> StudentList = new List<Student>();
-        public static readonly List<Faculty> FacultyList = new List<Faculty>();
-        public static readonly List<Admin>   AdminList   = new List<Admin>();
-        public static readonly List<User> AllUsers = new List<User>();
+		public static readonly Queue<Student> StudentQueue = new Queue<Student>();
+		public static readonly Queue<Faculty> FacultyQueue = new Queue<Faculty>();
+		public static readonly Queue<Admin> AdminQueue = new Queue<Admin>();
 
         public void GenerateUsers()
         {
             var studentThread = new Thread(GenerateStudent);
-            var facultyThread = new Thread( GenerateFaculty);
-            var adminThread   = new Thread(GenerateAdmin);
+            var facultyThread = new Thread(GenerateFaculty);
+            var adminThread = new Thread(GenerateAdmin);
 
             studentThread.Start();
             facultyThread.Start();
             adminThread.Start();
-
-            Scheduler.Dispatch();
         }
 
         private static void GenerateStudent()
         {
             var timeIncreament = 0;
+            Random random = new Random();
             while (true)
             {
-                timeIncreament += 5;
-                Thread.Sleep(5000);
+                //var average = Enumerable.Range(3, 5).ToList().Average();
+                //(3 + 4 + 5 + 6 + 7) / 5 = 5
+                int interArrivalTime = random.Next(3, 7);
+                timeIncreament += interArrivalTime;
+
+                Thread.Sleep(interArrivalTime * 1000);
+
                 var student = new Student
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "student " + timeIncreament
                 };
-                StudentList.Add(student);
-                //AllUsers.Add(student);
+                StudentQueue.Enqueue(student);
                 Console.WriteLine(student);
 
             }
@@ -48,17 +49,22 @@ namespace web_simulator
         private static void GenerateFaculty()
         {
             var timeIncreament = 0;
+            Random random = new Random();
             while (true)
             {
-                timeIncreament += 13;
-                Thread.Sleep(13000);
+                //var average = Enumerable.Range(7, 9).ToList().Average();
+                //(7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15) / 9 = 11
+                int interArrivalTime = random.Next(7, 15);
+                timeIncreament += interArrivalTime;
+
+                Thread.Sleep(interArrivalTime * 1000);
+
                 var faculty = new Faculty
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "faculty " + timeIncreament
                 };
-                FacultyList.Add(faculty);
-                //AllUsers.Add(faculty);
+                FacultyQueue.Enqueue(faculty);
                 Console.WriteLine(faculty);
             }
         }
@@ -66,17 +72,22 @@ namespace web_simulator
         private static void GenerateAdmin()
         {
             var timeIncreament = 0;
+            Random random = new Random();
             while (true)
             {
-                timeIncreament += 17;
-                Thread.Sleep(17000);
+                //var average = Enumerable.Range(13, 13).ToList().Average();
+                //(13 + 14 + 15 + 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25) / 13 = 19
+                int interArrivalTime = random.Next(13, 25);
+                timeIncreament += interArrivalTime;
+
+                Thread.Sleep(interArrivalTime * 1000);
+
                 var admin = new Admin
                 {
                     InterArrivalTime = timeIncreament,
                     Name = "admin " + timeIncreament
                 };
-                AdminList.Add(admin);
-                //AllUsers.Add(admin);
+                AdminQueue.Enqueue(admin);
                 Console.WriteLine(admin);
             }
         }

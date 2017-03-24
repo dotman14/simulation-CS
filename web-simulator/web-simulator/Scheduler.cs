@@ -16,32 +16,38 @@ namespace web_simulator
                 OpenWindows.Add("window-" + i);
         }
 
-
-        public static void Dispatch()
+        public void Dispatch(User user)
         {
-            var dispatchThread = new Thread(DispatchNextUser);
+            var dispatchThread = new Thread(() => DispatchNextUser(user));
 
             dispatchThread.Start();
         }
 
-        private static void DispatchNextUser()
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="user"></param>
+        private void DispatchNextUser(User user)
         {
-            //if(OpenWindows.Count == 0)
-            //{
-            //    lock (OpenWindows)
-            //    {
+            Random random = new Random();
+            lock (OpenWindows)
+            {
+                if (OpenWindows.Count > 0)
+                {
+                    var openWindowAtIndex = random.Next(0, OpenWindows.Count);
+                    var takeWindow = OpenWindows[openWindowAtIndex];
 
-            //    }
-            //}
+                    OpenWindows.RemoveAt(openWindowAtIndex);
 
+                    Randomize.RunClassMethods(user, random.Next(0, 4));
+                }
+                else
+                {
+                    Console.WriteLine("Delay....");
+                }
+            }
         }
 
-        public bool CheckArrivalTime(User user)
-        {
-
-
-            return true;
-        }
         public static int WaitTime { get; set; }
         private static List<string> OpenWindows { get; set; }
     }

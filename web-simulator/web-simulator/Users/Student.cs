@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Threading;
 
 namespace web_simulator.Users
 {
     public class Student : User
     {
+        const int SLEEP_COMPLETE_SURVERY = 15;
+        const int SLEEP_VIEW_SURVERY = 9;
+
         public override void Login()
         {
             Console.WriteLine("Student Login");
@@ -14,14 +18,16 @@ namespace web_simulator.Users
             Console.WriteLine("Student Logout");
         }
 
-        public void CompleteSurvery()
+        public int CompleteSurvery()
         {
-            Console.WriteLine("Student CompleteSurvery");
+            Thread.Sleep(SLEEP_COMPLETE_SURVERY * 1000);
+            return SLEEP_COMPLETE_SURVERY;
         }
 
-        public void ViewSurvery()
+        public int ViewSurvery()
         {
-            Console.WriteLine("Student ViewSurvery");
+            Thread.Sleep(SLEEP_VIEW_SURVERY * 1000);
+            return SLEEP_VIEW_SURVERY;
         }
     }
 }

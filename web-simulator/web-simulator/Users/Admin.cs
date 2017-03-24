@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Threading;
 
 namespace web_simulator.Users
 {
-    class Admin : User
+    public class Admin : User
     {
+        const int SLEEP_VIEW_REPORT = 10;
+
         public override void Login()
         {
             Console.WriteLine("Admin Login");
@@ -14,9 +17,10 @@ namespace web_simulator.Users
             Console.WriteLine("Admin Logout");
         }
 
-        public void ViewReport()
+        public int ViewReport()
         {
-            Console.WriteLine("Admin View Report");
+            Thread.Sleep(SLEEP_VIEW_REPORT * 1000);
+            return SLEEP_VIEW_REPORT;
         }
     }
 }
