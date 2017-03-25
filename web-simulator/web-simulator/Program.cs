@@ -6,6 +6,7 @@
         {
             UserContainer uc = new UserContainer();
             uc.GenerateUsers();
+            UserConsumer.Consumer();
         }
     }
 }

@@ -6,6 +6,8 @@ namespace web_simulator
 {
     static class Randomize
     {
+        private static readonly object SyncLock = new object();
+        private static readonly Random Random = new Random();
         /// <summary>
         /// A wrapper method that run class methods depending on the object passed to it.
         /// </summary>
@@ -13,22 +15,33 @@ namespace web_simulator
         /// <param name="noOfTimesToRunMethod"></param>
         public static void RunClassMethods(User typeOfUser, int noOfTimesToRunMethod)
         {
-            if (typeOfUser is Student)
+            if(typeOfUser == null)
+                return;
+            if(typeOfUser is Student)
             {
-                var student = (Student)typeOfUser;
-                RunMethod(student, noOfTimesToRunMethod);
+                //typeOfUser.Login();
+                Console.WriteLine("login for {0}", typeOfUser.Name);
+                RunMethod(typeOfUser, noOfTimesToRunMethod);
+                //typeOfUser.Logout();
+                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
-            if (typeOfUser is Faculty)
+            if(typeOfUser is Faculty)
             {
-                var faculty = (Faculty)typeOfUser;
-                RunMethod(faculty, noOfTimesToRunMethod);
+                // typeOfUser.Login();
+                Console.WriteLine("login for {0}", typeOfUser.Name);
+                RunMethod(typeOfUser, noOfTimesToRunMethod);
+                //typeOfUser.Logout();
+                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
-            if (typeOfUser is Admin)
+            if(typeOfUser is Admin)
             {
-                var admin = (Admin)typeOfUser;
-                RunMethod(admin, noOfTimesToRunMethod);
+                //typeOfUser.Login();
+                Console.WriteLine("login for {0}", typeOfUser.Name);
+                RunMethod(typeOfUser, noOfTimesToRunMethod);
+                //typeOfUser.Logout();
+                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
         }
 
@@ -37,22 +50,28 @@ namespace web_simulator
         /// Each method has to run their respective Login and Logout methods first and last respectively. In between these methods,
         /// they can run other methods available to them as many times as possible.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="user"></param>
         /// <param name="noOfTimesToRunMethod"></param>
-        private static void RunMethod(User obj, int noOfTimesToRunMethod)
+        private static void RunMethod(User user, int noOfTimesToRunMethod)
         {
-            var rand = new Random();
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
-            var adminType = obj.GetType();
+            var userType = user.GetType();
 
-            obj.Login();
             for (var i = 0; i < noOfTimesToRunMethod; i++)
             {
-                var methodIndex = rand.Next(0, obj.GetMethods(obj).Count);
-                var method = adminType.GetMethod(obj.GetMethods(obj)[methodIndex], flags);
-                Console.WriteLine(method.Invoke(obj, new object[] { }));
+                var methodIndex = RandomNumber(0, user.GetMethods(user).Count);
+                var method = userType.GetMethod(user.GetMethods(user)[methodIndex], flags);
+                Console.WriteLine(method.Invoke(user, new object[] { }));
             }
-            obj.Logout();
+        }
+
+        //http://stackoverflow.com/a/768001/3067055
+        public static int RandomNumber(int min, int max)
+        {
+            lock (SyncLock)
+            {
+                return Random.Next(min, max);
+            }
         }
     }
 }

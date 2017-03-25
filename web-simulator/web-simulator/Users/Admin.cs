@@ -17,10 +17,12 @@ namespace web_simulator.Users
             Console.WriteLine("Admin Logout");
         }
 
-        public int ViewReport()
+        public void ViewReport()
         {
+            Console.WriteLine("Admin SLEEP_VIEW_REPORT Start");
             Thread.Sleep(SLEEP_VIEW_REPORT * 1000);
-            return SLEEP_VIEW_REPORT;
+            Console.WriteLine("Admin SLEEP_VIEW_REPORT End");
+            Console.WriteLine("Admin SLEEP_VIEW_REPORT took {0}secs", SLEEP_VIEW_REPORT);
         }
     }
 }

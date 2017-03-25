@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scheduler.cs" />
     <Compile Include="Users\Admin.cs" />
     <Compile Include="Users\Faculty.cs" />
     <Compile Include="Program.cs" />

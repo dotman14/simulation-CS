@@ -7,30 +7,45 @@ namespace web_simulator
 {
     public class UserConsumer
     {
-        static readonly Random Random = new Random();
         //const int MIN_NO_OF_METHODS = 0;
         public static void Consumer()
         {
-            while (true)
+            var stu = new Thread(() =>
             {
-                if (UserContainer.StudentQueue.Count != 0)
+                while (true)
                 {
-                    var student = new Thread(() => StudentConsumer(UserContainer.StudentQueue));
-                    student.Start();
+                    if (UserContainer.StudentQueue.Count != 0)
+                    {
+                        StudentConsumer(UserContainer.StudentQueue);
+                    }
                 }
+            });
 
-                if (UserContainer.StudentQueue.Count != 0)
+            var fac = new Thread(() =>
+            {
+                while (true)
                 {
-                    var faculty = new Thread(() => FacultyConsumer(UserContainer.FacultyQueue));
-                    faculty.Start();
+                    if (UserContainer.FacultyQueue.Count != 0)
+                    {
+                        FacultyConsumer(UserContainer.FacultyQueue);
+                    }
                 }
+            });
 
-                if (UserContainer.StudentQueue.Count != 0)
+            var adm = new Thread(() =>
+            {
+                while (true)
                 {
-                    var admin = new Thread(() => AdminConsumer(UserContainer.AdminQueue));
-                    admin.Start();
+                    if (UserContainer.AdminQueue.Count != 0)
+                    {
+                        AdminConsumer(UserContainer.AdminQueue);
+                    }
                 }
-            }
+            });
+
+            stu.Start();
+            fac.Start();
+            adm.Start();
         }
 
         private static void StudentConsumer(Queue<Student> studentQueue)
@@ -40,11 +55,10 @@ namespace web_simulator
             {
                 if(studentQueue.Count != 0)
                 {
-                    var stu = studentQueue.Dequeue();
-                    localStudent = stu;
+                    localStudent = studentQueue.Dequeue();
                 }
             }
-            Randomize.RunClassMethods(localStudent, Random.Next(1, 4));
+            Randomize.RunClassMethods(localStudent, Randomize.RandomNumber(1, 4));
         }
 
         private static void FacultyConsumer(Queue<Faculty> facultyQueue)
@@ -54,11 +68,10 @@ namespace web_simulator
             {
                 if (facultyQueue.Count != 0)
                 {
-                    var fac = facultyQueue.Dequeue();
-                    localFaculty = fac;
+                    localFaculty = facultyQueue.Dequeue();
                 }
             }
-            Randomize.RunClassMethods(localFaculty, Random.Next(1, 4));
+            Randomize.RunClassMethods(localFaculty, Randomize.RandomNumber(1, 4));
         }
 
         private static void AdminConsumer(Queue<Admin> adminQueue)
@@ -68,11 +81,10 @@ namespace web_simulator
             {
                 if (adminQueue.Count != 0)
                 {
-                    var adm = adminQueue.Dequeue();
-                    localAdmin = adm;
+                    localAdmin = adminQueue.Dequeue();
                 }
             }
-            Randomize.RunClassMethods(localAdmin, Random.Next(1, 4));
+            Randomize.RunClassMethods(localAdmin, Randomize.RandomNumber(1, 4));
         }
     }
 }
