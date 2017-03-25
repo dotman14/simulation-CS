@@ -13,24 +13,24 @@ namespace web_simulator
         {
             while (true)
             {
-                if (UserContainer.StudentQueue.Count != 0)
+                if (UserContainer.StudentQueue.Count >= 1)
                 {
                     var student = new Thread(() => StudentConsumer(UserContainer.StudentQueue));
-                    //student.Start();
+                    student.Start();
                 }
 
-                if (UserContainer.StudentQueue.Count != 0)
+                if (UserContainer.StudentQueue.Count >= 1)
                 {
                     var faculty = new Thread(() => FacultyConsumer(UserContainer.FacultyQueue));
-                   // faculty.Start();
+                    faculty.Start();
                 }
 
-                if (UserContainer.StudentQueue.Count != 0)
+                if (UserContainer.StudentQueue.Count >= 1)
                 {
                     var admin = new Thread(() => AdminConsumer(UserContainer.AdminQueue));
-                    //admin.Start();
+                    admin.Start();
                 }
-            } 
+            }
         }
         public static void StudentConsumer(Queue<Student> studentQueue)
         {
@@ -43,7 +43,7 @@ namespace web_simulator
             Randomize.RunClassMethods(localStudent, Random.Next(0, 4));
         }
 
-		public static void FacultyConsumer(Queue<Faculty> facultyQueue)
+        public static void FacultyConsumer(Queue<Faculty> facultyQueue)
         {
             Faculty localFaculty;
             lock (facultyQueue)
@@ -54,7 +54,7 @@ namespace web_simulator
             Randomize.RunClassMethods(localFaculty, Random.Next(0, 4));
         }
 
-		public static void AdminConsumer(Queue<Admin> adminQueue)
+        public static void AdminConsumer(Queue<Admin> adminQueue)
         {
             Admin localAdmin;
             lock (adminQueue)
