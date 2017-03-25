@@ -15,11 +15,13 @@ namespace web_simulator
         {
             var studentThread = new Thread(GenerateStudent);
             var facultyThread = new Thread(GenerateFaculty);
-            var adminThread = new Thread(GenerateAdmin);
+            var adminThread   = new Thread(GenerateAdmin);
 
             studentThread.Start();
             facultyThread.Start();
             adminThread.Start();
+
+            UserConsumer.Consumer();
         }
 
         private static void GenerateStudent()

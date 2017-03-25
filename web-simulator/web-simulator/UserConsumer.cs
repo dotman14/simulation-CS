@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using web_simulator.Users;
 
 namespace web_simulator
@@ -7,9 +8,31 @@ namespace web_simulator
     public class UserConsumer
     {
         static readonly Random Random = new Random();
-        const int MIN_NO_OF_METHODS = 0;
+        //const int MIN_NO_OF_METHODS = 0;
+        public static void Consumer()
+        {
+            while (true)
+            {
+                if (UserContainer.StudentQueue.Count != 0)
+                {
+                    var student = new Thread(() => StudentConsumer(UserContainer.StudentQueue));
+                    //student.Start();
+                }
 
-		public static void StudentConsumer(Queue<Student> studentQueue)
+                if (UserContainer.StudentQueue.Count != 0)
+                {
+                    var faculty = new Thread(() => FacultyConsumer(UserContainer.FacultyQueue));
+                   // faculty.Start();
+                }
+
+                if (UserContainer.StudentQueue.Count != 0)
+                {
+                    var admin = new Thread(() => AdminConsumer(UserContainer.AdminQueue));
+                    //admin.Start();
+                }
+            } 
+        }
+        public static void StudentConsumer(Queue<Student> studentQueue)
         {
             Student localStudent;
             lock (studentQueue)
