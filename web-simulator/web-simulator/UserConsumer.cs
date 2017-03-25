@@ -13,56 +13,66 @@ namespace web_simulator
         {
             while (true)
             {
-                if (UserContainer.StudentQueue.Count >= 1)
+                if (UserContainer.StudentQueue.Count != 0)
                 {
                     var student = new Thread(() => StudentConsumer(UserContainer.StudentQueue));
                     student.Start();
                 }
 
-                if (UserContainer.StudentQueue.Count >= 1)
+                if (UserContainer.StudentQueue.Count != 0)
                 {
                     var faculty = new Thread(() => FacultyConsumer(UserContainer.FacultyQueue));
                     faculty.Start();
                 }
 
-                if (UserContainer.StudentQueue.Count >= 1)
+                if (UserContainer.StudentQueue.Count != 0)
                 {
                     var admin = new Thread(() => AdminConsumer(UserContainer.AdminQueue));
                     admin.Start();
                 }
             }
         }
-        public static void StudentConsumer(Queue<Student> studentQueue)
+
+        private static void StudentConsumer(Queue<Student> studentQueue)
         {
-            Student localStudent;
+            var localStudent = new Student();
             lock (studentQueue)
             {
-                var stu = studentQueue.Dequeue();
-                localStudent = stu;
+                if(studentQueue.Count != 0)
+                {
+                    var stu = studentQueue.Dequeue();
+                    localStudent = stu;
+                }
             }
-            Randomize.RunClassMethods(localStudent, Random.Next(0, 4));
+            Randomize.RunClassMethods(localStudent, Random.Next(1, 4));
         }
 
-        public static void FacultyConsumer(Queue<Faculty> facultyQueue)
+        private static void FacultyConsumer(Queue<Faculty> facultyQueue)
         {
-            Faculty localFaculty;
+            var localFaculty = new Faculty();
             lock (facultyQueue)
             {
-                var fac = facultyQueue.Dequeue();
-                localFaculty = fac;
+                if (facultyQueue.Count != 0)
+                {
+                    var fac = facultyQueue.Dequeue();
+                    localFaculty = fac;
+                }
             }
-            Randomize.RunClassMethods(localFaculty, Random.Next(0, 4));
+            Randomize.RunClassMethods(localFaculty, Random.Next(1, 4));
         }
 
-        public static void AdminConsumer(Queue<Admin> adminQueue)
+        private static void AdminConsumer(Queue<Admin> adminQueue)
         {
-            Admin localAdmin;
+            var localAdmin = new Admin();
             lock (adminQueue)
             {
-                var adm = adminQueue.Dequeue();
-                localAdmin = adm;
+                if (adminQueue.Count != 0)
+                {
+                    var adm = adminQueue.Dequeue();
+                    localAdmin = adm;
+                }
             }
-            Randomize.RunClassMethods(localAdmin, Random.Next(0, 4));
+            Randomize.RunClassMethods(localAdmin, Random.Next(1, 4));
         }
     }
 }
