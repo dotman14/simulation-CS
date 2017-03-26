@@ -56,6 +56,7 @@ namespace web_simulator
                 if(studentQueue.Count != 0)
                 {
                     localStudent = studentQueue.Dequeue();
+                    Logger.InsertUserGeneration(Student.STUDENT_CONSUMER_LOGFILE, localStudent.GetType().Name + " ", localStudent.Name + " ", DateTime.Now);
                 }
             }
             Randomize.RunClassMethods(localStudent, Randomize.RandomNumber(1, 4));
@@ -69,6 +70,7 @@ namespace web_simulator
                 if (facultyQueue.Count != 0)
                 {
                     localFaculty = facultyQueue.Dequeue();
+                    Logger.InsertUserGeneration(Faculty.FACULTY_CONSUMER_LOGFILE, localFaculty.GetType().Name + " ", localFaculty.Name + " ", DateTime.Now);
                 }
             }
             Randomize.RunClassMethods(localFaculty, Randomize.RandomNumber(1, 4));
@@ -82,6 +84,7 @@ namespace web_simulator
                 if (adminQueue.Count != 0)
                 {
                     localAdmin = adminQueue.Dequeue();
+                    Logger.InsertUserGeneration(Admin.ADMIN_CONSUMER_LOGFILE, localAdmin.GetType().Name + " ", localAdmin.Name + " ", DateTime.Now);
                 }
             }
             Randomize.RunClassMethods(localAdmin, Randomize.RandomNumber(1, 4));

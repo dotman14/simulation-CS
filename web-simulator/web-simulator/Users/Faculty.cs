@@ -5,10 +5,13 @@ namespace web_simulator.Users
 {
     public class Faculty : User
     {
-        const int SLEEP_SURVERY = 9;
-        const int SLEEP_VIEW_SCHEDULE = 10;
-        const int SLEEP_ROASTER = 7;
-        const int SLEEP_SURVERY_RESULT = 11;
+        private const int SLEEP_SURVERY = 9;
+        private const int SLEEP_VIEW_SCHEDULE = 10;
+        private const int SLEEP_ROASTER = 7;
+        private const int SLEEP_SURVERY_RESULT = 11;
+
+        public const string FACULTY_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "facultyProducerFile.txt";
+        public const string FACULTY_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "facultyConsumerFile.txt";
 
         public override void Login()
         {

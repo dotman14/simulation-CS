@@ -7,9 +7,16 @@ namespace web_simulator
 {
 	class UserContainer
 	{
-		public static readonly Queue<Student> StudentQueue = new Queue<Student>();
-		public static readonly Queue<Faculty> FacultyQueue = new Queue<Faculty>();
-		public static readonly Queue<Admin> AdminQueue = new Queue<Admin>();
+		static UserContainer()
+		{
+			StudentQueue = new Queue<Student>();
+			FacultyQueue = new Queue<Faculty>();
+			  AdminQueue = new Queue<Admin>();
+		}
+
+		public static readonly Queue<Student> StudentQueue;
+		public static readonly Queue<Faculty> FacultyQueue;
+		public static readonly Queue<Admin> AdminQueue;
 
 		public void GenerateUsers()
 		{
@@ -20,8 +27,6 @@ namespace web_simulator
 			studentThread.Start();
 			facultyThread.Start();
 			adminThread.Start();
-
-			//UserConsumer.Consumer();
 		}
 
 		private static void GenerateStudent()
@@ -30,7 +35,6 @@ namespace web_simulator
 			while (true)
 			{
 				//var average = Enumerable.Range(3, 5).ToList().Average();
-				//(3 + 4 + 5 + 6 + 7) / 5 = 5
 				int interArrivalTime = Randomize.RandomNumber(3, 7);
 				timeIncreament += interArrivalTime;
 
@@ -39,11 +43,11 @@ namespace web_simulator
 				var student = new Student
 				{
 					InterArrivalTime = timeIncreament,
-					Name = "student " + timeIncreament
+					Name = "student-" + timeIncreament
 				};
 				StudentQueue.Enqueue(student);
 				Console.WriteLine(student);
-
+                Logger.InsertUserGeneration(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " ", student.Name+" ", DateTime.Now);
 			}
 		}
 
@@ -53,7 +57,6 @@ namespace web_simulator
 			while (true)
 			{
 				//var average = Enumerable.Range(7, 9).ToList().Average();
-				//(7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15) / 9 = 11
 				int interArrivalTime = Randomize.RandomNumber(7, 15);
 				timeIncreament += interArrivalTime;
 
@@ -62,11 +65,12 @@ namespace web_simulator
 				var faculty = new Faculty
 				{
 					InterArrivalTime = timeIncreament,
-					Name = "faculty " + timeIncreament
+					Name = "faculty-" + timeIncreament
 				};
 				FacultyQueue.Enqueue(faculty);
 				Console.WriteLine(faculty);
-			}
+                Logger.InsertUserGeneration(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " ", faculty.Name + " ", DateTime.Now);
+            }
 		}
 
 		private static void GenerateAdmin()
@@ -75,7 +79,6 @@ namespace web_simulator
 			while (true)
 			{
 				//var average = Enumerable.Range(13, 13).ToList().Average();
-				//(13 + 14 + 15 + 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25) / 13 = 19
 				int interArrivalTime = Randomize.RandomNumber(13, 13);
 				timeIncreament += interArrivalTime;
 
@@ -84,11 +87,12 @@ namespace web_simulator
 				var admin = new Admin
 				{
 					InterArrivalTime = timeIncreament,
-					Name = "admin " + timeIncreament
+					Name = "admin-" + timeIncreament
 				};
 				AdminQueue.Enqueue(admin);
 				Console.WriteLine(admin);
-			}
+                Logger.InsertUserGeneration(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " ", admin.Name + " ", DateTime.Now);
+            }
 		}
 	}
 }

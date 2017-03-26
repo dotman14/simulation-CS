@@ -6,8 +6,15 @@ namespace web_simulator
 {
     static class Randomize
     {
-        private static readonly object SyncLock = new object();
-        private static readonly Random Random = new Random();
+        static Randomize()
+        {
+             SyncLock = new object();
+             Random = new Random();
+        }
+
+        private static readonly object SyncLock;
+        private static readonly Random Random;
+
         /// <summary>
         /// A wrapper method that run class methods depending on the object passed to it.
         /// </summary>
