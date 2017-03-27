@@ -6,13 +6,10 @@ using web_simulator.Users;
 namespace web_simulator
 {
     /// <summary>
-    ///
+    /// Class used to generate all types of User object in the system.
     /// </summary>
     class UserContainer
     {
-        /// <summary>
-        ///
-        /// </summary>
         static UserContainer()
         {
             StudentQueue = new Queue<Student>();
@@ -25,21 +22,24 @@ namespace web_simulator
         public static readonly Queue<Admin> AdminQueue;
 
         /// <summary>
-        ///
+        /// This method is used to put each method that generates it's respective objects into threds.
+		/// First we create new Thread() with the method we want to run, then we start the thread.
         /// </summary>
         public void GenerateUsers()
         {
-            var studentThread = new Thread(GenerateStudent);
-            var facultyThread = new Thread(GenerateFaculty);
-            var adminThread = new Thread(GenerateAdmin);
+            var student = new Thread(GenerateStudent);
+            var faculty = new Thread(GenerateFaculty);
+            var admin = new Thread(GenerateAdmin);
 
-            studentThread.Start();
-            facultyThread.Start();
-            adminThread.Start();
+            student.Start();
+            faculty.Start();
+            admin.Start();
         }
 
         /// <summary>
-        ///
+        /// This method generates a new Student object and adds it to the end of a queue.
+		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
+		/// Then we log this information into the respective Student text file.
         /// </summary>
         private static void GenerateStudent()
         {
@@ -49,9 +49,7 @@ namespace web_simulator
                 //var average = Enumerable.Range(3, 5).ToList().Average();
                 int interArrivalTime = Randomize.RandomNumber(3, 7);
                 timeIncreament += interArrivalTime;
-
                 Thread.Sleep(interArrivalTime * 1000);
-
                 var student = new Student
                 {
                     InterArrivalTime = timeIncreament,
@@ -63,10 +61,12 @@ namespace web_simulator
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        private static void GenerateFaculty()
+		/// <summary>
+		/// This method generates a new Faculty object and adds it to the end of a queue.
+		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
+		/// Then we log this information into the respective Student text file.
+		/// </summary>
+		private static void GenerateFaculty()
         {
             var timeIncreament = 0;
             while (true)
@@ -74,9 +74,7 @@ namespace web_simulator
                 //var average = Enumerable.Range(7, 9).ToList().Average();
                 int interArrivalTime = Randomize.RandomNumber(7, 15);
                 timeIncreament += interArrivalTime;
-
                 Thread.Sleep(interArrivalTime * 1000);
-
                 var faculty = new Faculty
                 {
                     InterArrivalTime = timeIncreament,
@@ -88,10 +86,12 @@ namespace web_simulator
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        private static void GenerateAdmin()
+		/// <summary>
+		/// This method generates a new Admin object and adds it to the end of a queue.
+		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
+		/// Then we log this information into the respective Student text file.
+		/// </summary>
+		private static void GenerateAdmin()
         {
             var timeIncreament = 0;
             while (true)
@@ -99,9 +99,7 @@ namespace web_simulator
                 //var average = Enumerable.Range(13, 13).ToList().Average();
                 int interArrivalTime = Randomize.RandomNumber(13, 13);
                 timeIncreament += interArrivalTime;
-
                 Thread.Sleep(interArrivalTime * 1000);
-
                 var admin = new Admin
                 {
                     InterArrivalTime = timeIncreament,

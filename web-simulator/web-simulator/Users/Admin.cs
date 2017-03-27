@@ -14,25 +14,16 @@ namespace web_simulator.Users
         public const string ADMIN_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "adminConsumerFile.txt";
         public const string ADMIN_METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "adminMethodTimeFile.txt";
 
-        /// <summary>
-        ///
-        /// </summary>
         public override void Login()
         {
             Console.WriteLine("Admin Login");
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public override void Logout()
         {
             Console.WriteLine("Admin Logout");
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public void ViewReport()
         {
             Console.WriteLine("Admin SLEEP_VIEW_REPORT Start");

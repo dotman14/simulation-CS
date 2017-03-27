@@ -17,25 +17,16 @@ namespace web_simulator.Users
         public const string FACULTY_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "facultyConsumerFile.txt";
         public const string FACULTY_METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "facultyMethodTimeFile.txt";
 
-        /// <summary>
-        ///
-        /// </summary>
         public override void Login()
         {
             Console.WriteLine("Faculty Login");
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public override void Logout()
         {
             Console.WriteLine("Faculty Logout");
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public void Survey()
         {
             Console.WriteLine("Faculty SLEEP_SURVERY Start");
@@ -44,9 +35,6 @@ namespace web_simulator.Users
             Console.WriteLine("Faculty SLEEP_SURVERY took {0}secs", SLEEP_SURVERY);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public void ViewSchedule()
         {
             Console.WriteLine("Faculty SLEEP_VIEW_SCHEDULE Start");
@@ -55,9 +43,6 @@ namespace web_simulator.Users
             Console.WriteLine("Faculty SLEEP_VIEW_SCHEDULE took {0}secs", SLEEP_VIEW_SCHEDULE);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public void Roaster()
         {
             Console.WriteLine("Faculty SLEEP_ROASTER Start");
@@ -66,9 +51,6 @@ namespace web_simulator.Users
             Console.WriteLine("Faculty SLEEP_ROASTER took {0}secs", SLEEP_ROASTER);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
         public void SurveyResults()
         {
             Console.WriteLine("Faculty SLEEP_SURVERY_RESULT Start");

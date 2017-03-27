@@ -1,7 +1,7 @@
 ﻿namespace web_simulator
 {
     /// <summary>
-    ///
+    /// Program driver.
     /// </summary>
     class Program
     {
