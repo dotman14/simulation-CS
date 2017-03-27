@@ -3,23 +3,36 @@ using System.Threading;
 
 namespace web_simulator.Users
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class Admin : User
     {
         private const int SLEEP_VIEW_REPORT = 10;
 
         public const string ADMIN_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "adminProducerFile.txt";
         public const string ADMIN_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "adminConsumerFile.txt";
+        public const string ADMIN_METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "adminMethodTimeFile.txt";
 
+        /// <summary>
+        ///
+        /// </summary>
         public override void Login()
         {
             Console.WriteLine("Admin Login");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public override void Logout()
         {
             Console.WriteLine("Admin Logout");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public void ViewReport()
         {
             Console.WriteLine("Admin SLEEP_VIEW_REPORT Start");

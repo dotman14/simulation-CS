@@ -10,17 +10,27 @@ namespace web_simulator.Users
 
         public const string STUDENT_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "studentProducerFile.txt";
         public const string STUDENT_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "studentConsumerFile.txt";
+        public const string STUDENT_METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "studentMethodTimeFile.txt";
 
+        /// <summary>
+        ///
+        /// </summary>
         public override void Login()
         {
             Console.WriteLine("Student Login");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public override void Logout()
         {
             Console.WriteLine("Student Logout");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public void CompleteSurvery()
         {
             Console.WriteLine("Student CompleteSurvery Start");
@@ -29,6 +39,9 @@ namespace web_simulator.Users
             Console.WriteLine("Student CompleteSurvery took 15secs");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public void ViewSurvery()
         {
             Console.WriteLine("Student ViewSurvery Start");

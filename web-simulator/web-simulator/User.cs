@@ -3,10 +3,14 @@ using System.Reflection;
 
 namespace web_simulator
 {
+    /// <summary>
+    ///
+    /// </summary>
     public abstract class User
     {
         public int InterArrivalTime;
         public string Name;
+
         public abstract void Login();
 
         public abstract void Logout();
@@ -15,6 +19,12 @@ namespace web_simulator
         {
             return $"Name: {Name}; Time: {InterArrivalTime}";
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public List<string> GetMethods(User user)
         {
             var methodList = new List<string>();

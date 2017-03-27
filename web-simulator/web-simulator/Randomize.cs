@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using web_simulator.Users;
 
 namespace web_simulator
 {
+    /// <summary>
+    ///
+    /// </summary>
     static class Randomize
     {
         static Randomize()
         {
-             SyncLock = new object();
-             Random = new Random();
+            SyncLock = new object();
+            Random = new Random();
         }
 
         private static readonly object SyncLock;
@@ -22,9 +26,9 @@ namespace web_simulator
         /// <param name="noOfTimesToRunMethod"></param>
         public static void RunClassMethods(User typeOfUser, int noOfTimesToRunMethod)
         {
-            if(typeOfUser == null)
+            if (typeOfUser == null)
                 return;
-            if(typeOfUser is Student)
+            if (typeOfUser is Student)
             {
                 //typeOfUser.Login();
                 Console.WriteLine("login for {0}", typeOfUser.Name);
@@ -33,7 +37,7 @@ namespace web_simulator
                 Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
-            if(typeOfUser is Faculty)
+            if (typeOfUser is Faculty)
             {
                 // typeOfUser.Login();
                 Console.WriteLine("login for {0}", typeOfUser.Name);
@@ -42,7 +46,7 @@ namespace web_simulator
                 Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
-            if(typeOfUser is Admin)
+            if (typeOfUser is Admin)
             {
                 //typeOfUser.Login();
                 Console.WriteLine("login for {0}", typeOfUser.Name);
@@ -63,6 +67,7 @@ namespace web_simulator
         {
             const BindingFlags flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
             var userType = user.GetType();
+            var methodsCalled = new List<string>();
 
             for (var i = 0; i < noOfTimesToRunMethod; i++)
             {
@@ -72,6 +77,12 @@ namespace web_simulator
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         //http://stackoverflow.com/a/768001/3067055
         public static int RandomNumber(int min, int max)
         {
