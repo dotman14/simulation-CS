@@ -8,7 +8,7 @@ namespace web_simulator
 	/// <summary>
 	/// Class used to generate all types of User object in the system.
 	/// </summary>
-	class UserContainer
+	static class UserContainer
 	{
 		static UserContainer()
 		{

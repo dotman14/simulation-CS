@@ -9,7 +9,7 @@ namespace web_simulator
 	/// <summary>
 	/// Class to manage how objects are dequeued from the queue.
 	/// </summary>
-	public class UserConsumer
+	public static class UserConsumer
 	{
 		/// <summary>
 		/// This method is used to put each method that generates it's respective objects into threads.
