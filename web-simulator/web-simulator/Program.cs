@@ -7,8 +7,7 @@
     {
         static void Main(string[] args)
         {
-            UserContainer uc = new UserContainer();
-            uc.GenerateUsers();
+            UserContainer.GenerateUsers();
             UserConsumer.Consumer();
         }
     }
