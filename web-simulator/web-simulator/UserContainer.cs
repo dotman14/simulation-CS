@@ -5,9 +5,6 @@ using web_simulator.Users;
 
 namespace web_simulator
 {
-	/// <summary>
-	/// Class used to generate all types of User object in the system.
-	/// </summary>
 	static class UserContainer
 	{
 		static UserContainer()
@@ -37,7 +34,7 @@ namespace web_simulator
 		}
 
 		/// <summary>
-		/// This method generates a new Student object and adds it to the end of a queue.
+		/// This method generates a new Student object and adds it to the end of a queue. Same apply for GenerateFaculty() and GenerateAdmin().
 		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
 		/// Then we log this information into the respective Student text file.
 		/// </summary>
@@ -61,11 +58,6 @@ namespace web_simulator
 			}
 		}
 
-		/// <summary>
-		/// This method generates a new Faculty object and adds it to the end of a queue.
-		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
-		/// Then we log this information into the respective Student text file.
-		/// </summary>
 		private static void GenerateFaculty()
 		{
 			var timeIncreament = 0;
@@ -86,11 +78,6 @@ namespace web_simulator
 			}
 		}
 
-		/// <summary>
-		/// This method generates a new Admin object and adds it to the end of a queue.
-		/// We control the rate at which the objects are inserted using a random number selector, then Sleep the function for that number of seconds.
-		/// Then we log this information into the respective Student text file.
-		/// </summary>
 		private static void GenerateAdmin()
 		{
 			var timeIncreament = 0;

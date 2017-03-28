@@ -58,6 +58,8 @@ namespace web_simulator
 		/// <summary>
 		/// This method is used to Dequeue elements at the top of the queue. We make sure to lock the queue to make sure, we are not enqueuing and dequeuing to the same queue at the same time.
 		/// This method records the time of dequeuing and also time after which all random methods has been executed on the dequeued object.
+		/// 
+		/// Same as FacultyConsumer() and FacultyAdmin()
 		/// </summary>
 		/// <param name="studentQueue">student queue</param>
 		private static void StudentConsumer(Queue<Student> studentQueue)
@@ -78,11 +80,6 @@ namespace web_simulator
 			Logger.LogUserActivity(Student.STUDENT_METHODTIME_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", stopwatch.Elapsed + " | ", DateTime.Now);
 		}
 
-		/// <summary>
-		/// This method is used to Dequeue elements at the top of the queue. We make sure to lock the queue to make sure, we are not enqueuing and dequeuing to the same queue at the same time.
-		/// This method records the time of dequeuing and also time after which all random methods has been executed on the dequeued object.
-		/// </summary>
-		/// <param name="facultyQueue">faculty queue</param>
 		private static void FacultyConsumer(Queue<Faculty> facultyQueue)
 		{
 			var faculty = new Faculty();
@@ -101,11 +98,6 @@ namespace web_simulator
 			Logger.LogUserActivity(Faculty.FACULTY_METHODTIME_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", stopwatch.Elapsed + " | ", DateTime.Now);
 		}
 
-		/// <summary>
-		/// This method is used to Dequeue elements at the top of the queue. We make sure to lock the queue to make sure, we are not enqueuing and dequeuing to the same queue at the same time.
-		/// This method records the time of dequeuing and also time after which all random methods has been executed on the dequeued object.
-		/// </summary>
-		/// <param name="adminQueue">admin queue</param>
 		private static void AdminConsumer(Queue<Admin> adminQueue)
 		{
 			var admin = new Admin();

@@ -3,22 +3,13 @@ using System.Reflection;
 
 namespace web_simulator
 {
-	/// <summary>
-	/// An abstract class to manage ALL users in this program.
-	/// </summary>
 	public abstract class User
 	{
 		public int InterArrivalTime;
 		public string Name;
 
-		/// <summary>
-		/// Abstract method to be overridden by the extending class
-		/// </summary>
 		public abstract void Login();
 
-		/// <summary>
-		/// Abstract method to be overriden by the extending class
-		/// </summary>
 		public abstract void Logout();
 
 		public override string ToString()

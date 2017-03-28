@@ -4,9 +4,6 @@ using web_simulator.Users;
 
 namespace web_simulator
 {
-	/// <summary>
-	/// This class is used to manage random events in the application.
-	/// </summary>
 	static class Randomize
 	{
 		static Randomize()
@@ -20,11 +17,6 @@ namespace web_simulator
 		private static readonly Random Random;
 		public static readonly BindingFlags MethodFlags;
 
-		/// <summary>
-		/// A wrapper method that run class methods depending on the object passed to it.
-		/// </summary>
-		/// <param name="typeOfUser">Object we want to run their methods</param>
-		/// <param name="noOfTimesToRunMethod">Number of times we want to run methods.</param>
 		public static void RunClassMethods(User typeOfUser, int noOfTimesToRunMethod)
 		{
 			if (typeOfUser == null)

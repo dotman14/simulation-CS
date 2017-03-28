@@ -3,10 +3,6 @@ using System.IO;
 
 namespace web_simulator
 {
-	/// <summary>
-	/// A simple class to handle log information.
-	/// There may be need to extend this class in the future (make it an interface and create concrete class to insert into txt files).
-	/// </summary>
 	class Logger
 	{
 		public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";

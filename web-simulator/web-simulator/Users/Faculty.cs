@@ -3,9 +3,6 @@ using System.Threading;
 
 namespace web_simulator.Users
 {
-    /// <summary>
-    ///
-    /// </summary>
     public class Faculty : User
     {
         private const int SLEEP_SURVERY = 9;
