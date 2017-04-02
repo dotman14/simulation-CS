@@ -6,9 +6,10 @@ namespace web_simulator
 	public abstract class User
 	{
 		public int InterArrivalTime;
-		public string Name;
+	    public string Name;
+	    public const string METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "methodTimeFile.txt";
 
-		public abstract void Login();
+	    public abstract void Login();
 
 		public abstract void Logout();
 

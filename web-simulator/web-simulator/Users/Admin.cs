@@ -9,7 +9,6 @@ namespace web_simulator.Users
 
         public const string ADMIN_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "adminProducerFile.txt";
         public const string ADMIN_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "adminConsumerFile.txt";
-        public const string ADMIN_METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "adminMethodTimeFile.txt";
 
         public override void Login()
         {

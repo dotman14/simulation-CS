@@ -3,7 +3,7 @@ using System.IO;
 
 namespace web_simulator
 {
-	class Logger
+	static class Logger
 	{
 		public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
 		//public const string FOLDER_LOCATION = "/Users/dotun/Projects/web-simulator/web-simulator/TextFiles/";
@@ -17,7 +17,7 @@ namespace web_simulator
 		/// <param name="dateTime">Time all actions on an object was completed</param>
 		public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
 		{
-			using (StreamWriter sw = File.AppendText(location))
+			using (var sw = File.AppendText(location))
 			{
 				sw.WriteLine(typeOfUser + nameOfUser + dateTime);
 			}
@@ -31,11 +31,11 @@ namespace web_simulator
 		/// <param name="nameOfUser">name of the user we are trying to record</param>
 		/// <param name="timeTaken">Time taken to run all the methods for an object</param>
 		/// <param name="dateTime">Time all actions on an object was completed</param>
-		public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, DateTime dateTime)
+		public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, DateTime dateTime)
 		{
-			using (StreamWriter sw = File.AppendText(location))
+			using (var sw = File.AppendText(location))
 			{
-				sw.WriteLine(typeOfUser + nameOfUser + timeTaken + dateTime);
+				sw.WriteLine(typeOfUser + nameOfUser + timeTaken + methods + dateTime);
 			}
 		}
 	}
