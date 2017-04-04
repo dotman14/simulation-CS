@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using web_simulator.Users;
+using AppConfig = System.Configuration.ConfigurationManager;
 
 namespace web_simulator
 {
@@ -11,12 +12,15 @@ namespace web_simulator
 		{
 			StudentQueue = new Queue<Student>();
 			FacultyQueue = new Queue<Faculty>();
-			AdminQueue = new Queue<Admin>();
+			 AdminQueue = new Queue<Admin>();
 		}
 
 		public static readonly Queue<Student> StudentQueue;
 		public static readonly Queue<Faculty> FacultyQueue;
 		public static readonly Queue<Admin> AdminQueue;
+	    public static int StudentCounter;
+	    public static int FacultyCounter;
+	    public static int AdminCounter;
 
 		/// <summary>
 		/// This method is used to put each method that generates it's respective objects into threads.
@@ -35,10 +39,12 @@ namespace web_simulator
 		/// </summary>
 		private static void GenerateStudent()
 		{
+
 			var timeIncreament = 0;
 			while (true)
 			{
-				//var average = Enumerable.Range(3, 5).ToList().Average();
+			    if(StudentCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfStudent"])) break;
+
 				var interArrivalTime = Randomize.RandomNumber(3, 7);
 				timeIncreament += interArrivalTime;
 				Thread.Sleep(interArrivalTime * 1000);
@@ -48,6 +54,7 @@ namespace web_simulator
 					Name = "student-" + timeIncreament
 				};
 				StudentQueue.Enqueue(student);
+			    StudentCounter++;
 				Console.WriteLine(student);
 				Logger.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
 			}
@@ -58,7 +65,7 @@ namespace web_simulator
 			var timeIncreament = 0;
 			while (true)
 			{
-				//var average = Enumerable.Range(7, 9).ToList().Average();
+			    if(FacultyCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfFaculty"])) break;
 				var interArrivalTime = Randomize.RandomNumber(7, 15);
 				timeIncreament += interArrivalTime;
 				Thread.Sleep(interArrivalTime * 1000);
@@ -68,6 +75,7 @@ namespace web_simulator
 					Name = "faculty-" + timeIncreament
 				};
 				FacultyQueue.Enqueue(faculty);
+			    FacultyCounter++;
 				Console.WriteLine(faculty);
 				Logger.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
 			}
@@ -78,7 +86,7 @@ namespace web_simulator
 			var timeIncreament = 0;
 			while (true)
 			{
-				//var average = Enumerable.Range(13, 13).ToList().Average();
+			    if(AdminCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfAdmin"])) break;
 				var interArrivalTime = Randomize.RandomNumber(13, 13);
 				timeIncreament += interArrivalTime;
 				Thread.Sleep(interArrivalTime * 1000);
@@ -88,6 +96,7 @@ namespace web_simulator
 					Name = "admin-" + timeIncreament
 				};
 				AdminQueue.Enqueue(admin);
+			    AdminCounter++;
 				Console.WriteLine(admin);
 				Logger.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
 			}

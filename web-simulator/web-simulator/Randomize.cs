@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using web_simulator.Users;
 
@@ -73,8 +72,8 @@ namespace web_simulator
             lock (SyncLock)
             {
                 UserConsumer.ThreadCount--;
+                Logger.LogUserActivity(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
             }
-            Logger.LogUserActivity(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
         }
 
         /// <summary>

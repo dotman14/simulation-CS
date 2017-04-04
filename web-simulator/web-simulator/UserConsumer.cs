@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using web_simulator.Users;
+using AppConfig = System.Configuration.ConfigurationManager;
 
 namespace web_simulator
 {
@@ -10,14 +11,14 @@ namespace web_simulator
     /// </summary>
     public static class UserConsumer
     {
-
         static UserConsumer()
         {
             SyncLock = new object();
+            MaxNoOfThreads = Convert.ToInt32(AppConfig.AppSettings["noOfThreads"]);
         }
 
         private static readonly object SyncLock;
-        private const int MAX_NO_OF_THREADS = 10;
+        private static readonly int MaxNoOfThreads;
         public static int ThreadCount;
 
         /// <summary>
@@ -30,6 +31,7 @@ namespace web_simulator
             {
                 while (true)
                 {
+                    if(UserContainer.StudentCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfStudent"])) break;
                     StudentConsumer(UserContainer.StudentQueue);
                 }
             }).Start();
@@ -38,6 +40,7 @@ namespace web_simulator
             {
                 while (true)
                 {
+                    if(UserContainer.FacultyCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfFaculty"])) break;
                     FacultyConsumer(UserContainer.FacultyQueue);
                 }
             }).Start();
@@ -46,6 +49,7 @@ namespace web_simulator
             {
                 while (true)
                 {
+                    if(UserContainer.AdminCounter >= Convert.ToInt32(AppConfig.AppSettings["noOfAdmin"])) break;
                     AdminConsumer(UserContainer.AdminQueue);
                 }
             }).Start();
@@ -62,16 +66,11 @@ namespace web_simulator
         {
             lock (SyncLock)
             {
-                if (ThreadCount < MAX_NO_OF_THREADS)
-                {
-                    if (studentQueue.Count != 0)
-                    {
-                        ThreadCount++;
-                        var student = studentQueue.Dequeue();
-                        Logger.LogUserCreation(Student.STUDENT_CONSUMER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
-                        new Thread(() => Randomize.RunClassMethods(student, Randomize.RandomNumber(1, 4))).Start();
-                    }
-                }
+                if (ThreadCount >= MaxNoOfThreads || studentQueue.Count == 0) return;
+                ThreadCount++;
+                var student = studentQueue.Dequeue();
+                Logger.LogUserCreation(Student.STUDENT_CONSUMER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
+                new Thread(() => Randomize.RunClassMethods(student, Randomize.RandomNumber(1, 4))).Start();
             }
         }
 
@@ -79,16 +78,11 @@ namespace web_simulator
         {
             lock (SyncLock)
             {
-                if (ThreadCount < MAX_NO_OF_THREADS)
-                {
-                    if (facultyQueue.Count != 0)
-                    {
-                        ThreadCount++;
-                        var faculty = facultyQueue.Dequeue();
-                        Logger.LogUserCreation(Faculty.FACULTY_CONSUMER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
-                        new Thread(() => Randomize.RunClassMethods(faculty, Randomize.RandomNumber(1, 4))).Start();
-                    }
-                }
+                if (ThreadCount >= MaxNoOfThreads || facultyQueue.Count == 0) return;
+                ThreadCount++;
+                var faculty = facultyQueue.Dequeue();
+                Logger.LogUserCreation(Faculty.FACULTY_CONSUMER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
+                new Thread(() => Randomize.RunClassMethods(faculty, Randomize.RandomNumber(1, 4))).Start();
             }
         }
 
@@ -96,16 +90,11 @@ namespace web_simulator
         {
             lock (SyncLock)
             {
-                if (ThreadCount < MAX_NO_OF_THREADS)
-                {
-                    if (adminQueue.Count != 0)
-                    {
-                        ThreadCount++;
-                        var admin = adminQueue.Dequeue();
-                        Logger.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
-                        new Thread(() => Randomize.RunClassMethods(admin, Randomize.RandomNumber(1, 4))).Start();
-                    }
-                }
+                if (ThreadCount >= MaxNoOfThreads || adminQueue.Count == 0) return;
+                ThreadCount++;
+                var admin = adminQueue.Dequeue();
+                Logger.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
+                new Thread(() => Randomize.RunClassMethods(admin, Randomize.RandomNumber(1, 4))).Start();
             }
         }
     }

@@ -5,8 +5,8 @@ namespace web_simulator
 {
 	static class Logger
 	{
-		public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
-		//public const string FOLDER_LOCATION = "/Users/dotun/Projects/web-simulator/web-simulator/TextFiles/";
+		//public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
+		public const string FOLDER_LOCATION = "/Users/dotun/RiderProjects/Web-Simulator/web-simulator/web-simulator/TextFiles/";
 
 		/// <summary>
 		/// This method is used to insert time which an object is created and consumed into a text file.
