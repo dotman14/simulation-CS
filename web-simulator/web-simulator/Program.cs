@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Text;
 
 namespace web_simulator
 {
@@ -16,9 +13,9 @@ namespace web_simulator
             {
                Sql.LogUserCreation("UserProduce", "twwwwes555t", "tedasdasdasdst", DateTime.MaxValue);
             }
-            catch (Exception e)
+			catch (TypeInitializationException e)
             {
-                Console.WriteLine(e.Message);
+				Console.WriteLine(e.InnerException);
             }
             //UserContainer.GenerateUsers();
             //UserConsumer.Consumer();

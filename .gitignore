@@ -252,3 +252,4 @@ paket-files/
 *.sln.iml
 /web-simulator/web-simulator/TextFiles
 /web-simulator/web-simulator/App.config
+web-simulator/web-simulator/App.config

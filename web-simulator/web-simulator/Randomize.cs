@@ -72,7 +72,8 @@ namespace web_simulator
             lock (SyncLock)
             {
                 UserConsumer.ThreadCount--;
-                TextFile.LogUserActivity(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
+				//TextFile.LogUserActivity(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
+                Sql.LogUserActivity("UserMethods", user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
             }
         }
 
