@@ -10,8 +10,8 @@ namespace web_simulator.Users
         private const int SLEEP_ROASTER = 7;
         private const int SLEEP_SURVERY_RESULT = 11;
 
-        public const string FACULTY_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "facultyProducerFile.txt";
-        public const string FACULTY_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "facultyConsumerFile.txt";
+        public const string FACULTY_PRODUCER_LOGFILE = TextFile.FOLDER_LOCATION + "facultyProducerFile.txt";
+        public const string FACULTY_CONSUMER_LOGFILE = TextFile.FOLDER_LOCATION + "facultyConsumerFile.txt";
 
         public override void Login()
         {

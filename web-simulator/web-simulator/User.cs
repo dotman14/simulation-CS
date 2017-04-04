@@ -7,7 +7,7 @@ namespace web_simulator
 	{
 		public int InterArrivalTime;
 	    public string Name;
-	    public const string METHODTIME_LOGFILE = Logger.FOLDER_LOCATION + "methodTimeFile.txt";
+	    public const string METHODTIME_LOGFILE = TextFile.FOLDER_LOCATION + "methodTimeFile.txt";
 
 	    public abstract void Login();
 

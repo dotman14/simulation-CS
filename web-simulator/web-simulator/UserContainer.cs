@@ -56,7 +56,7 @@ namespace web_simulator
 				StudentQueue.Enqueue(student);
 			    StudentCounter++;
 				Console.WriteLine(student);
-				Logger.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
+				TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
 			}
 		}
 
@@ -77,7 +77,7 @@ namespace web_simulator
 				FacultyQueue.Enqueue(faculty);
 			    FacultyCounter++;
 				Console.WriteLine(faculty);
-				Logger.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
+				TextFile.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
 			}
 		}
 
@@ -98,7 +98,7 @@ namespace web_simulator
 				AdminQueue.Enqueue(admin);
 			    AdminCounter++;
 				Console.WriteLine(admin);
-				Logger.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
+				TextFile.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
 			}
 		}
 	}

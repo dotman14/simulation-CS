@@ -7,8 +7,8 @@ namespace web_simulator.Users
     {
         private const int SLEEP_VIEW_REPORT = 10;
 
-        public const string ADMIN_PRODUCER_LOGFILE = Logger.FOLDER_LOCATION + "adminProducerFile.txt";
-        public const string ADMIN_CONSUMER_LOGFILE = Logger.FOLDER_LOCATION + "adminConsumerFile.txt";
+        public const string ADMIN_PRODUCER_LOGFILE = TextFile.FOLDER_LOCATION + "adminProducerFile.txt";
+        public const string ADMIN_CONSUMER_LOGFILE = TextFile.FOLDER_LOCATION + "adminConsumerFile.txt";
 
         public override void Login()
         {

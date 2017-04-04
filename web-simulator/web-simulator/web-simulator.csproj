@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
+    <Compile Include="ILog.cs" />
+    <Compile Include="TextFile.cs" />
+    <Compile Include="Sql.cs" />
     <Compile Include="Users\Admin.cs" />
     <Compile Include="Users\Faculty.cs" />
     <Compile Include="Program.cs" />
@@ -72,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TextFiles\" />

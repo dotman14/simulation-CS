@@ -69,7 +69,7 @@ namespace web_simulator
                 if (ThreadCount >= MaxNoOfThreads || studentQueue.Count == 0) return;
                 ThreadCount++;
                 var student = studentQueue.Dequeue();
-                Logger.LogUserCreation(Student.STUDENT_CONSUMER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
+                TextFile.LogUserCreation(Student.STUDENT_CONSUMER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
                 new Thread(() => Randomize.RunClassMethods(student, Randomize.RandomNumber(1, 4))).Start();
             }
         }
@@ -81,7 +81,7 @@ namespace web_simulator
                 if (ThreadCount >= MaxNoOfThreads || facultyQueue.Count == 0) return;
                 ThreadCount++;
                 var faculty = facultyQueue.Dequeue();
-                Logger.LogUserCreation(Faculty.FACULTY_CONSUMER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
+                TextFile.LogUserCreation(Faculty.FACULTY_CONSUMER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
                 new Thread(() => Randomize.RunClassMethods(faculty, Randomize.RandomNumber(1, 4))).Start();
             }
         }
@@ -93,7 +93,7 @@ namespace web_simulator
                 if (ThreadCount >= MaxNoOfThreads || adminQueue.Count == 0) return;
                 ThreadCount++;
                 var admin = adminQueue.Dequeue();
-                Logger.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
+                TextFile.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
                 new Thread(() => Randomize.RunClassMethods(admin, Randomize.RandomNumber(1, 4))).Start();
             }
         }
