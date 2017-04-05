@@ -68,8 +68,7 @@ namespace web_simulator
                 Console.WriteLine(method.Invoke(user, new object[] { }));
                 lock (SyncLock)
                 {
-                    TextFile.LogEachMethod(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ",
-                        user.GetMethods(user)[methodIndex] + " | ", start + " | ", DateTime.Now.ToString("HH:mm:ss.ffffff"));
+                    Sql.LogEachMethod("UserMethods", user.GetType().Name, user.Name, user.GetMethods(user)[methodIndex] , start, DateTime.Now.ToString("HH:mm:ss.ffffff"));
                 }
             }
             //sw.Stop();

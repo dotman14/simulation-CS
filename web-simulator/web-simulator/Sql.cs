@@ -8,40 +8,34 @@ namespace web_simulator
 {
     class Sql : ILog
     {
-        private static readonly SqlConnection Connection;
-        private static readonly string[] TableWhiteList = { "UserConsume", "UserProduce" };
+        //public static readonly SqlConnection Connection;
+        private static readonly string[] TableWhiteList = { "UserConsume", "UserProduce", "UserMethods" };
+        private static readonly string Conn = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 
-        static Sql()
-        {
-            var conn = ConfigurationManager.ConnectionStrings["simulator"].ConnectionString;
-            Connection = new SqlConnection(conn);
-        }
 
-        private static void LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
+        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
         {
             if (!TableWhiteList.Contains(location))
                 return;
             var sb = new StringBuilder();
             sb.AppendFormat("INSERT INTO {0} VALUES(@userType, @userName, @consumeDateTime)", location);
             var sql = sb.ToString();
-            using (var command = new SqlCommand(sql, Connection))
+            using (var connection = new SqlConnection(Conn))
             {
-                command.Parameters.AddWithValue("@userType", typeOfUser);
-                command.Parameters.AddWithValue("@userName", nameOfUser);
-                command.Parameters.AddWithValue("@consumeDateTime", dateTime);
-                try
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    Connection.Open();
+                    command.Parameters.AddWithValue("@userType", typeOfUser);
+                    command.Parameters.AddWithValue("@userName", nameOfUser);
+                    command.Parameters.AddWithValue("@consumeDateTime", dateTime);
+
+                    connection.Open();
                     command.ExecuteNonQuery();
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
             }
+
         }
 
-        private static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start,
+        public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start,
             string end)
         {
             if (!TableWhiteList.Contains(location)) return;
@@ -50,22 +44,18 @@ namespace web_simulator
 
             var sql = sb.ToString();
 
-            using (var command = new SqlCommand(sql, Connection))
+            using (var connection = new SqlConnection(Conn))
             {
-                command.Parameters.AddWithValue("@typeOfUser", typeOfUser);
-                command.Parameters.AddWithValue("@nameOfUser", nameOfUser);
-                command.Parameters.AddWithValue("@methods", methods);
-                command.Parameters.AddWithValue("@start", start);
-                command.Parameters.AddWithValue("@end", end);
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@typeOfUser", typeOfUser);
+                    command.Parameters.AddWithValue("@nameOfUser", nameOfUser);
+                    command.Parameters.AddWithValue("@methods", methods);
+                    command.Parameters.AddWithValue("@start", start);
+                    command.Parameters.AddWithValue("@end", end);
 
-                try
-                {
-                    Connection.Open();
+                    connection.Open();
                     command.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
                 }
             }
         }

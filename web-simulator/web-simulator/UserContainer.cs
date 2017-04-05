@@ -56,9 +56,9 @@ namespace web_simulator
 				StudentQueue.Enqueue(student);
 			    StudentCounter++;
 				Console.WriteLine(student);
-				TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				//Sql.LogUserCreation("UserProduce", student.GetType().Name + " | ", student.Name + " | ", DateTime.Now);
-			}
+				//TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+			    Sql.LogUserCreation("UserProduce", student.GetType().Name, student.Name, DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+            }
 		}
 
 		private static void GenerateFaculty()
@@ -78,9 +78,9 @@ namespace web_simulator
 				FacultyQueue.Enqueue(faculty);
 			    FacultyCounter++;
 				Console.WriteLine(faculty);
-				TextFile.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				//Sql.LogUserCreation("UserProduce", faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now);
-			}
+				//TextFile.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+				Sql.LogUserCreation("UserProduce", faculty.GetType().Name, faculty.Name, DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+            }
 		}
 
 		private static void GenerateAdmin()
@@ -100,9 +100,9 @@ namespace web_simulator
 				AdminQueue.Enqueue(admin);
 			    AdminCounter++;
 				Console.WriteLine(admin);
-				TextFile.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				//Sql.LogUserCreation("UserProduce", admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now);
-			}
+				//TextFile.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+				Sql.LogUserCreation("UserProduce", admin.GetType().Name, admin.Name, DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+            }
 		}
 	}
 }
