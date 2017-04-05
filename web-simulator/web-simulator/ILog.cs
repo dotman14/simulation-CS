@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace web_simulator
 {
     interface ILog
     {
-        void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime);
-
-        void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
-            DateTime dateTime);
+        void LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime);
+        //void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, string dateTime);
+        void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start, string end);
     }
 }

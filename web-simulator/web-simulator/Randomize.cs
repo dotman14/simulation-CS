@@ -58,22 +58,26 @@ namespace web_simulator
         private static void RunMethod(User user, int noOfTimesToRunMethod)
         {
             var userType = user.GetType();
-            var listOfMethods = new List<string>();
             var sw = new Stopwatch();
-            sw.Start();
+            //sw.Start();
             for (var i = 0; i < noOfTimesToRunMethod; i++)
             {
+                var start = DateTime.Now.ToString("HH:mm:ss.ffffff");
                 var methodIndex = RandomNumber(0, user.GetMethods(user).Count);
                 var method = userType.GetMethod(user.GetMethods(user)[methodIndex], MethodFlags);
-                listOfMethods.Add(user.GetMethods(user)[methodIndex]);
                 Console.WriteLine(method.Invoke(user, new object[] { }));
+                lock (SyncLock)
+                {
+                    TextFile.LogEachMethod(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ",
+                        user.GetMethods(user)[methodIndex] + " | ", start + " | ", DateTime.Now.ToString("HH:mm:ss.ffffff"));
+                }
             }
-            sw.Stop();
+            //sw.Stop();
             lock (SyncLock)
             {
                 UserConsumer.ThreadCount--;
 				//TextFile.LogUserActivity(User.METHODTIME_LOGFILE, user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
-                Sql.LogUserActivity("UserMethods", user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
+                //Sql.LogUserActivity("UserMethods", user.GetType().Name + " | ", user.Name + " | ", sw.Elapsed + " | ", string.Join(", ", listOfMethods) + " | ", DateTime.Now);
             }
         }
 

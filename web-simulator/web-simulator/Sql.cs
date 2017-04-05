@@ -17,7 +17,7 @@ namespace web_simulator
             Connection = new SqlConnection(conn);
         }
 
-        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+        private static void LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
         {
             if (!TableWhiteList.Contains(location))
                 return;
@@ -41,11 +41,12 @@ namespace web_simulator
             }
         }
 
-        public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, DateTime dateTime)
+        private static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start,
+            string end)
         {
             if (!TableWhiteList.Contains(location)) return;
             var sb = new StringBuilder();
-            sb.AppendFormat("INSERT INTO {0} VALUES(@typeOfUser, @nameOfUser, @timeTaken, @methods, @dateTime)", location);
+            sb.AppendFormat("INSERT INTO {0} VALUES(@typeOfUser, @nameOfUser, @methods, @start, @end)", location);
 
             var sql = sb.ToString();
 
@@ -53,9 +54,9 @@ namespace web_simulator
             {
                 command.Parameters.AddWithValue("@typeOfUser", typeOfUser);
                 command.Parameters.AddWithValue("@nameOfUser", nameOfUser);
-                command.Parameters.AddWithValue("@timeTaken", timeTaken);
                 command.Parameters.AddWithValue("@methods", methods);
-                command.Parameters.AddWithValue("@dateTime", dateTime);
+                command.Parameters.AddWithValue("@start", start);
+                command.Parameters.AddWithValue("@end", end);
 
                 try
                 {
@@ -69,15 +70,48 @@ namespace web_simulator
             }
         }
 
-        void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+         void ILog.LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start, string end)
+         {
+             LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
+         }
+
+         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
         {
             LogUserCreation(location, typeOfUser, nameOfUser, dateTime);
         }
 
-        void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
-            DateTime dateTime)
-        {
-            LogUserActivity(location, typeOfUser, nameOfUser, timeTaken, methods, dateTime);
-        }
+//       void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
+//            DateTime dateTime)
+//       {
+//           LogUserActivity(location, typeOfUser, nameOfUser, timeTaken, methods, dateTime);
+//       }
+
+//       public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, DateTime dateTime)
+//       {
+//           if (!TableWhiteList.Contains(location)) return;
+//           var sb = new StringBuilder();
+//           sb.AppendFormat("INSERT INTO {0} VALUES(@typeOfUser, @nameOfUser, @timeTaken, @methods, @dateTime)", location);
+//
+//           var sql = sb.ToString();
+//
+//           using (var command = new SqlCommand(sql, Connection))
+//           {
+//               command.Parameters.AddWithValue("@typeOfUser", typeOfUser);
+//               command.Parameters.AddWithValue("@nameOfUser", nameOfUser);
+//               command.Parameters.AddWithValue("@timeTaken", timeTaken);
+//               command.Parameters.AddWithValue("@methods", methods);
+//               command.Parameters.AddWithValue("@dateTime", dateTime);
+//
+//               try
+//               {
+//                   Connection.Open();
+//                   command.ExecuteNonQuery();
+//               }
+//               catch (Exception e)
+//               {
+//                   Console.WriteLine(e.Message);
+//               }
+//           }
+//       }
     }
 }
