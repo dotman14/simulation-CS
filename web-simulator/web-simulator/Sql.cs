@@ -13,7 +13,7 @@ namespace web_simulator
         private static readonly string Conn = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 
 
-        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
+        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
         {
             if (!TableWhiteList.Contains(location))
                 return;
@@ -35,8 +35,8 @@ namespace web_simulator
 
         }
 
-        public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start,
-            string end)
+        public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start,
+            DateTime end)
         {
             if (!TableWhiteList.Contains(location)) return;
             var sb = new StringBuilder();
@@ -60,12 +60,12 @@ namespace web_simulator
             }
         }
 
-         void ILog.LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, string start, string end)
+         void ILog.LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start, DateTime end)
          {
              LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
          }
 
-         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, string dateTime)
+         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
         {
             LogUserCreation(location, typeOfUser, nameOfUser, dateTime);
         }
