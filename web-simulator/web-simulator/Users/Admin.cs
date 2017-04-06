@@ -3,6 +3,7 @@ using System.Threading;
 
 namespace web_simulator.Users
 {
+
     public class Admin : User
     {
         private const int SLEEP_VIEW_REPORT = 15;

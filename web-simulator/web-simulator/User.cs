@@ -18,7 +18,7 @@ namespace web_simulator
 			return $"Name: {Name}; Time: {InterArrivalTime}";
 		}
 
-		/// <summary>
+		/// <summary>.
 		/// This method returns a List<string> of ALL methods available to any child class that extends THIS parent class.
 		/// For this program, we need to remove some methods we do not need to call dynamically ToString, Login and Logout.
 		/// Add/Remove as you wish.

@@ -4,7 +4,9 @@ using System.Threading;
 namespace web_simulator.Users
 {
     public class Student : User
-    {
+    {/// <summary>
+    ///
+    /// </summary>
         private const int SLEEP_COMPLETE_SURVERY = 17;
         private const int SLEEP_VIEW_SURVERY = 23;
 

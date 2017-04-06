@@ -51,7 +51,7 @@ namespace web_simulator
 		/// they can run other methods available to them as many times as possible.
 		/// We record the time taken to run all methods in the for loop, we assume that login and logout methods take constant time.
 		/// After all methods has been executed, we lock and reduce the thread count, to make it available for other users to process jobs.
-		/// For our implementation, ALL methods do not take any parameter(s), as such, new object[] { } is empty.
+		/// Fo our implementation, ALL methods do not take any parameter(s), as such, new object[] { } is empty.
 		/// </summary>
 		/// <param name="user">Object we want to run their methods</param>
 		/// <param name="noOfTimesToRunMethod">Number of times we want to run methods.</param>

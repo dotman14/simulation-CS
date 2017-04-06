@@ -5,7 +5,7 @@ namespace web_simulator
 {
 	class TextFile : ILog
 	{
-		//public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
+		///public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
 		public const string FOLDER_LOCATION = "/Users/dotun/RiderProjects/Web-Simulator/web-simulator/web-simulator/TextFiles/";
 
 		public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)

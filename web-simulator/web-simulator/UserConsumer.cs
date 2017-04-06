@@ -95,7 +95,7 @@ namespace web_simulator
 				if (ThreadCount >= MaxNoOfThreads || adminQueue.Count == 0) return;
 				ThreadCount++;
 				var admin = adminQueue.Dequeue();
-				//TextFile.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+				///TextFile.LogUserCreation(Admin.ADMIN_CONSUMER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
 				Sql.LogUserCreation("UserConsume", admin.GetType().Name, admin.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 				new Thread(() => Randomize.RunClassMethods(admin, Randomize.RandomNumber(1, 4))).Start();
 			}

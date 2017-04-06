@@ -56,7 +56,7 @@ namespace web_simulator
 				StudentQueue.Enqueue(student);
 				StudentCounter++;
 				Console.WriteLine(student);
-				//TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+				///TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
 				Sql.LogUserCreation("UserProduce", student.GetType().Name, student.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 			}
 		}
