@@ -13,10 +13,9 @@ namespace web_simulator
         private static readonly string Conn = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 
 
-        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
+         public static void LogUserDequeue(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
         {
-            if (!TableWhiteList.Contains(location))
-                return;
+            if (!TableWhiteList.Contains(location)) return;
             var sb = new StringBuilder();
             sb.AppendFormat("INSERT INTO {0} VALUES(@userType, @userName, @thread, @consumeDateTime)", location);
             var sql = sb.ToString();
@@ -33,11 +32,29 @@ namespace web_simulator
                     command.ExecuteNonQuery();
                 }
             }
-
         }
 
-        public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start,
-            DateTime end)
+         public static void LogUserEnqueue(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+        {
+            if (!TableWhiteList.Contains(location)) return;
+            var sb = new StringBuilder();
+            sb.AppendFormat("INSERT INTO {0} VALUES(@userType, @userName, @produceDateTime)", location);
+            var sql = sb.ToString();
+            using (var connection = new SqlConnection(Conn))
+            {
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@userType", typeOfUser);
+                    command.Parameters.AddWithValue("@userName", nameOfUser);
+                    command.Parameters.AddWithValue("@produceDateTime", dateTime);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+         public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start, DateTime end)
         {
             if (!TableWhiteList.Contains(location)) return;
             var sb = new StringBuilder();
@@ -66,43 +83,14 @@ namespace web_simulator
              LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
          }
 
-         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
+        void ILog.LogDequeue(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
         {
-            LogUserCreation(location, typeOfUser, nameOfUser, threadCount, dateTime);
+            LogUserDequeue(location, typeOfUser, nameOfUser, threadCount, dateTime);
         }
 
-//       void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
-//            DateTime dateTime)
-//       {
-//           LogUserActivity(location, typeOfUser, nameOfUser, timeTaken, methods, dateTime);
-//       }
-
-//       public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, DateTime dateTime)
-//       {
-//           if (!TableWhiteList.Contains(location)) return;
-//           var sb = new StringBuilder();
-//           sb.AppendFormat("INSERT INTO {0} VALUES(@typeOfUser, @nameOfUser, @timeTaken, @methods, @dateTime)", location);
-//
-//           var sql = sb.ToString();
-//
-//           using (var command = new SqlCommand(sql, Connection))
-//           {
-//               command.Parameters.AddWithValue("@typeOfUser", typeOfUser);
-//               command.Parameters.AddWithValue("@nameOfUser", nameOfUser);
-//               command.Parameters.AddWithValue("@timeTaken", timeTaken);
-//               command.Parameters.AddWithValue("@methods", methods);
-//               command.Parameters.AddWithValue("@dateTime", dateTime);
-//
-//               try
-//               {
-//                   Connection.Open();
-//                   command.ExecuteNonQuery();
-//               }
-//               catch (Exception e)
-//               {
-//                   Console.WriteLine(e.Message);
-//               }
-//           }
-//       }
+        void ILog.LogEnqueue(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+        {
+            LogUserEnqueue(location, typeOfUser, nameOfUser, dateTime);
+        }
     }
 }

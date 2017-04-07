@@ -8,7 +8,15 @@ namespace web_simulator
 		///public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
 		public const string FOLDER_LOCATION = "/Users/dotun/RiderProjects/Web-Simulator/web-simulator/web-simulator/TextFiles/";
 
-		public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
+	    public static void LogUserDequeue(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
+		{
+			using (var sw = File.AppendText(location))
+			{
+				sw.WriteLine(typeOfUser + nameOfUser + threadCount + dateTime);
+			}
+		}
+
+		public static void LogUserEnqueue(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
 		{
 			using (var sw = File.AppendText(location))
 			{
@@ -16,39 +24,27 @@ namespace web_simulator
 			}
 		}
 
-	    public static void LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods, string dateTime)
+		public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string method, DateTime start, DateTime end)
 		{
 			using (var sw = File.AppendText(location))
 			{
-				sw.WriteLine(typeOfUser + nameOfUser + timeTaken + methods + dateTime);
+				sw.WriteLine(typeOfUser + nameOfUser + method + start + end);
 			}
 		}
 
+		void ILog.LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start, DateTime end)
+		{
+			LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
+		}
 
+		void ILog.LogDequeue(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
+		{
+			LogUserDequeue(location, typeOfUser, nameOfUser, threadCount, dateTime);
+		}
 
-	    public static void LogEachMethod(string location, string typeOfUser, string nameOfUser, string method,
-	        DateTime start, DateTime end)
-	    {
-	        using (var sw = File.AppendText(location))
-	        {
-	            sw.WriteLine(typeOfUser + nameOfUser + method + start + end);
-	        }
-	    }
-
-	    void ILog.LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start, DateTime end)
-	    {
-	        LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
-	    }
-
-	    void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
-	    {
-	        LogUserCreation(location, typeOfUser, nameOfUser, threadCount, dateTime);
-	    }
-
-//	    void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
-//	        string dateTime)
-//	    {
-//	        LogUserActivity(location, typeOfUser, nameOfUser, timeTaken, methods, dateTime);
-//	    }
+		void ILog.LogEnqueue(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+		{
+			LogUserEnqueue(location, typeOfUser, nameOfUser, dateTime);
+		}
 	}
 }

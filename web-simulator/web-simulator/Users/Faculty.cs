@@ -5,9 +5,6 @@ namespace web_simulator.Users
 {
     public class Faculty : User
     {
-        /// <summary>
-        ///
-        /// </summary>
         private const int SLEEP_SURVERY = 13;
         private const int SLEEP_VIEW_SCHEDULE = 9;
         private const int SLEEP_ROASTER = 11;
