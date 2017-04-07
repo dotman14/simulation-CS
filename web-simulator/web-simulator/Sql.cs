@@ -8,7 +8,6 @@ namespace web_simulator
 {
     class Sql : ILog
     {
-        ///public static readonly SqlConnection Connection;
         private static readonly string[] TableWhiteList = { "UserConsume", "UserProduce", "UserMethods" };
         private static readonly string Conn = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 

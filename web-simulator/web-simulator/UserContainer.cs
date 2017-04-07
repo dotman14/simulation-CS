@@ -46,6 +46,7 @@ namespace web_simulator
 					Name = "student-" + timeIncreament
 				};
 				StudentQueue.Enqueue(student);
+				Console.WriteLine("Enqueue student {0}", student.Name);
 				studentCounter++;
 				//TextFile.LogUserEnqueue(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 				Sql.LogUserEnqueue("UserProduce", student.GetType().Name, student.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
@@ -67,6 +68,7 @@ namespace web_simulator
 					Name = "faculty-" + timeIncreament
 				};
 				FacultyQueue.Enqueue(faculty);
+				Console.WriteLine("Enqueue student {0}", faculty.Name);
 				facultyCounter++;
 				//TextFile.LogUserEnqueue(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 				Sql.LogUserEnqueue("UserProduce", faculty.GetType().Name, faculty.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
@@ -88,6 +90,7 @@ namespace web_simulator
 					Name = "admin-" + timeIncreament
 				};
 				AdminQueue.Enqueue(admin);
+				Console.WriteLine("Enqueue student {0}", admin.Name);
 				adminCounter++;
 				//TextFile.LogUserEnqueue(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 				Sql.LogUserEnqueue("UserProduce", admin.GetType().Name, admin.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
