@@ -12,15 +12,15 @@ namespace web_simulator
 		{
 			StudentQueue = new Queue<Student>();
 			FacultyQueue = new Queue<Faculty>();
-			 AdminQueue = new Queue<Admin>();
+			  AdminQueue = new Queue<Admin>();
 		}
 
 		public static readonly Queue<Student> StudentQueue;
 		public static readonly Queue<Faculty> FacultyQueue;
 		public static readonly Queue<Admin> AdminQueue;
-		public static int StudentCounter;
-		public static int FacultyCounter;
-		public static int AdminCounter;
+	    private static int StudentCounter;
+	    private static int FacultyCounter;
+	    private static int AdminCounter;
 
 		/// <summary>
 		/// This method is used to put each method that generates it's respective objects into threads.
@@ -55,9 +55,8 @@ namespace web_simulator
 				};
 				StudentQueue.Enqueue(student);
 				StudentCounter++;
-				Console.WriteLine(student);
-				///TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				Sql.LogUserCreation("UserProduce", student.GetType().Name, student.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
+				//TextFile.LogUserCreation(Student.STUDENT_PRODUCER_LOGFILE, student.GetType().Name + " | ", student.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
+				Sql.LogUserCreation("UserProduce", student.GetType().Name, student.Name, 1, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 			}
 		}
 
@@ -77,9 +76,8 @@ namespace web_simulator
 				};
 				FacultyQueue.Enqueue(faculty);
 				FacultyCounter++;
-				Console.WriteLine(faculty);
 				//TextFile.LogUserCreation(Faculty.FACULTY_PRODUCER_LOGFILE, faculty.GetType().Name + " | ", faculty.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				Sql.LogUserCreation("UserProduce", faculty.GetType().Name, faculty.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
+				Sql.LogUserCreation("UserProduce", faculty.GetType().Name, faculty.Name, 1, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 			}
 		}
 
@@ -99,9 +97,8 @@ namespace web_simulator
 				};
 				AdminQueue.Enqueue(admin);
 				AdminCounter++;
-				Console.WriteLine(admin);
 				//TextFile.LogUserCreation(Admin.ADMIN_PRODUCER_LOGFILE, admin.GetType().Name + " | ", admin.Name + " | ", DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff"));
-				Sql.LogUserCreation("UserProduce", admin.GetType().Name, admin.Name, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
+				Sql.LogUserCreation("UserProduce", admin.GetType().Name, admin.Name, 1, DateTime.Parse(DateTime.Now.ToString("MM/dd/yy HH:mm:ss.ffffff")));
 			}
 		}
 	}

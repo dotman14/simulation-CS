@@ -23,10 +23,7 @@ namespace web_simulator.Users
 
         public void ViewReport()
         {
-            Console.WriteLine("Admin SLEEP_VIEW_REPORT Start");
             Thread.Sleep(SLEEP_VIEW_REPORT * 1000);
-            Console.WriteLine("Admin SLEEP_VIEW_REPORT End");
-            Console.WriteLine("Admin SLEEP_VIEW_REPORT took {0}secs", SLEEP_VIEW_REPORT);
         }
     }
 }

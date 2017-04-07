@@ -25,18 +25,12 @@ namespace web_simulator.Users
 
         public void CompleteSurvery()
         {
-            Console.WriteLine("Student CompleteSurvery Start");
             Thread.Sleep(SLEEP_COMPLETE_SURVERY * 1000);
-            Console.WriteLine("Student CompleteSurvery End");
-            Console.WriteLine("Student CompleteSurvery took 15secs");
         }
 
         public void ViewSurvery()
         {
-            Console.WriteLine("Student ViewSurvery Start");
             Thread.Sleep(SLEEP_VIEW_SURVERY * 1000);
-            Console.WriteLine("Student ViewSurvery End");
-            Console.WriteLine("Student ViewSurvery took 9secs");
         }
     }
 }

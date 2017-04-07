@@ -13,12 +13,12 @@ namespace web_simulator
         private static readonly string Conn = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 
 
-        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+        public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
         {
             if (!TableWhiteList.Contains(location))
                 return;
             var sb = new StringBuilder();
-            sb.AppendFormat("INSERT INTO {0} VALUES(@userType, @userName, @consumeDateTime)", location);
+            sb.AppendFormat("INSERT INTO {0} VALUES(@userType, @userName, @thread, @consumeDateTime)", location);
             var sql = sb.ToString();
             using (var connection = new SqlConnection(Conn))
             {
@@ -26,6 +26,7 @@ namespace web_simulator
                 {
                     command.Parameters.AddWithValue("@userType", typeOfUser);
                     command.Parameters.AddWithValue("@userName", nameOfUser);
+                    command.Parameters.AddWithValue("@thread", threadCount);
                     command.Parameters.AddWithValue("@consumeDateTime", dateTime);
 
                     connection.Open();
@@ -65,9 +66,9 @@ namespace web_simulator
              LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
          }
 
-         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+         void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
         {
-            LogUserCreation(location, typeOfUser, nameOfUser, dateTime);
+            LogUserCreation(location, typeOfUser, nameOfUser, threadCount, dateTime);
         }
 
 //       void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,

@@ -8,7 +8,7 @@ namespace web_simulator
 		///public const string FOLDER_LOCATION = "C:/Users/dotun/Source/Repos/website/web-simulator/web-simulator/TextFiles/";
 		public const string FOLDER_LOCATION = "/Users/dotun/RiderProjects/Web-Simulator/web-simulator/web-simulator/TextFiles/";
 
-		public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+		public static void LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
 		{
 			using (var sw = File.AppendText(location))
 			{
@@ -40,9 +40,9 @@ namespace web_simulator
 	        LogEachMethod(location, typeOfUser, nameOfUser, methods, start, end);
 	    }
 
-	    void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, DateTime dateTime)
+	    void ILog.LogUserCreation(string location, string typeOfUser, string nameOfUser, int threadCount, DateTime dateTime)
 	    {
-	        LogUserCreation(location, typeOfUser, nameOfUser, dateTime);
+	        LogUserCreation(location, typeOfUser, nameOfUser, threadCount, dateTime);
 	    }
 
 //	    void ILog.LogUserActivity(string location, string typeOfUser, string nameOfUser, string timeTaken, string methods,
