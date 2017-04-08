@@ -20,27 +20,20 @@ namespace web_simulator
 
         public static void RunClassMethods(User typeOfUser, int noOfTimesToRunMethod)
         {
-            if (typeOfUser == null)
-                return;
+            if (typeOfUser == null) return;
             if (typeOfUser is Student)
             {
-                Console.WriteLine("login for {0}", typeOfUser.Name);
                 RunMethod(typeOfUser, noOfTimesToRunMethod);
-                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
             if (typeOfUser is Faculty)
             {
-                Console.WriteLine("login for {0}", typeOfUser.Name);
                 RunMethod(typeOfUser, noOfTimesToRunMethod);
-                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
 
             if (typeOfUser is Admin)
             {
-                Console.WriteLine("login for {0}", typeOfUser.Name);
                 RunMethod(typeOfUser, noOfTimesToRunMethod);
-                Console.WriteLine("logout for {0}", typeOfUser.Name);
             }
         }
 

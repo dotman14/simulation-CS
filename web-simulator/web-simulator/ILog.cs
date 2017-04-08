@@ -9,3 +9,5 @@ namespace web_simulator
         void LogEachMethod(string location, string typeOfUser, string nameOfUser, string methods, DateTime start, DateTime end);
     }
 }
+
+//t15-s100-f50-a25
